@@ -1,0 +1,3 @@
+app/etc/local.xml.phpunit                  app/etc/local.xml.phpunit
+lib/aoe_testsetup/                         lib/aoe_testsetup/
+@shell if [ ! -f $PROJECT/phpunit.xml.dist.PROTECT ] ; then cp $MODULE/phpunit.xml.dist.template $PROJECT/phpunit.xml.dist; echo `date +%s` > $PROJECT/phpunit.xml.dist.PROTECT;  echo "Copied phpunit.xml.dist"; fi
