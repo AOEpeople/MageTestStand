@@ -13,7 +13,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
       --useDefaultConfigParams=yes \
       --magentoVersionByName="${MAGENTO_VERSION}" \
       --installationFolder="${SOURCE_DIR}/htdocs" \
-      --baseUrl="http://magento.localdomain/" || { echo "Installing Magento failed"; exit 1; }
+      --baseUrl="http://magento.local/" || { echo "Installing Magento failed"; exit 1; }
 fi
 
 if [ ! -f composer.lock ] ; then

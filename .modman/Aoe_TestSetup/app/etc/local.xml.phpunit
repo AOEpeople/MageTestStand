@@ -5,8 +5,8 @@
             <connection>
                 <host><![CDATA[127.0.0.1]]></host>
                 <username><![CDATA[root]]></username>
-                <password><![CDATA[root]]></password>
-                <dbname><![CDATA[testdummy]]></dbname>
+                <password><![CDATA[]]></password>
+                <dbname><![CDATA[mage_test]]></dbname>
             </connection>
          </default_setup>
       </resources>
