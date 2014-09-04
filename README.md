@@ -12,8 +12,8 @@ It uses following tools:
 
 ## Requirements
 
-- database 'mage' (user 'root', blank password) This is the datatbase Magento uses
-- database 'mage_test' (user 'root', blank password) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
+- database 'mageteststand' (user 'root', blank password) This is the datatbase Magento uses
+- database 'mageteststand_test' (user 'root', blank password) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
 - You can specify the database credentials using
   - `MAGENTO_DB_HOST`
   - `MAGENTO_DB_USER`
@@ -21,11 +21,19 @@ It uses following tools:
   - `MAGENTO_DB_NAME`
 - Environment variable `MAGENTO_VERSION` with valid Magento version for n98-magerun's install command
 
+## Generic usage
+
+- Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.0.1
+- Set the environment variable `WORKSPACE` to the directory of the magento module
+- checkout your magento module
+- run `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
+- you can use the script contents as a build step for sure, but this way it's easier ;)
+
 ## Travis CI configuration
 
 Example .travis.yaml file (in the Magento module you want to test):
 
-```bash
+```yml
 language: php
 php:
   - 5.3
@@ -42,17 +50,12 @@ env:
   - MAGENTO_VERSION=magento-ce-1.8.1.0
   - MAGENTO_VERSION=magento-ce-1.8.0.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
-before_script:
-  - git clone https://github.com/AOEpeople/MageTestStand.git ${TRAVIS_BUILD_DIR}/../build-environment
-  - cp -rf ${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/../build-environment/.modman/
-  - ${TRAVIS_BUILD_DIR}/../build-environment/install.sh
 script:
-  - cd ${TRAVIS_BUILD_DIR}/../build-environment/htdocs
-  - ${TRAVIS_BUILD_DIR}/../build-environment/bin/phpunit --colors -d display_errors=1
+  - curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
 notifications:
   email:
     recipients:
-      - travis@fabrizio-branca.de
+      - notify@someone.com
     on_success: always
     on_failure: always
 ```
@@ -70,16 +73,20 @@ magento-ce-1.7.0.2
 ```
 
 - Make sure that the configurations are build sequentiell, otherwise you might run into database issues!
-- use the following script as a shell build step
+- use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash`
+
+## Unittest your Module directly from bash/zsh/shell
+- set up your environment
 
 ```bash
-rm -rf ${WORKSPACE}/build-environment
-git clone https://github.com/AOEpeople/MageTestStand.git ${WORKSPACE}/build-environment
-ln -s ${WORKSPACE} ${WORKSPACE}/build-environment/.modman/__testModule
-${WORKSPACE}/build-environment/install.sh
+export WORKSPACE=/full/path/to/your/module
+export MAGENTO_VERSION=magento-ce-1.9.0.1
 
-cd ${WORKSPACE}/build-environment/htdocs
-${WORKSPACE}/build-environment/bin/phpunit --colors -d display_errors=1
+# if necessary
+export MAGENTO_DB_HOST=somewhere
+export MAGENTO_DB_USER=someone
+export MAGENTO_DB_PASS=something
+export MAGENTO_DB_NAME=somename
 ```
 
-- enable "activate chuck norris" as a post build action to add awesomeness
+- run `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash`

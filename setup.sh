@@ -9,12 +9,16 @@ function cleanup {
  
 trap cleanup EXIT
  
-if [ ! -z $TRAVIS_BUILD_DIR ]
-then
+if [ ! -z $TRAVIS_BUILD_DIR ] ; then
   WORKSPACE=$TRAVIS_BUILD_DIR
 fi
+
+if [ -z $WORKSPACE ] ; then
+  echo "No workspace configured, please set your WORKSPACE environment"
+  exit
+fi
  
-BUILDENV=`mktemp -d`
+BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
  
 echo "Using build directory ${BUILDENV}"
  
