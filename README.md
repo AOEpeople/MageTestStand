@@ -31,14 +31,18 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  - 5.6
+  - hhvm
+matrix:
+  allow_failures:
+  - php: 5.6
+  - php: hhvm
 env:
   - MAGENTO_VERSION=magento-ce-1.9.0.1
   - MAGENTO_VERSION=magento-ce-1.8.1.0
   - MAGENTO_VERSION=magento-ce-1.8.0.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
 before_script:
-  - mysql -e 'create database mage;'
-  - mysql -e 'create database mage_test;'
   - git clone https://github.com/AOEpeople/MageTestStand.git ${TRAVIS_BUILD_DIR}/../build-environment
   - cp -rf ${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/../build-environment/.modman/
   - ${TRAVIS_BUILD_DIR}/../build-environment/install.sh
@@ -48,7 +52,34 @@ script:
 notifications:
   email:
     recipients:
-      - mail@example.xom
+      - travis@fabrizio-branca.de
     on_success: always
     on_failure: always
 ```
+
+## Jenkins configuration
+
+- create a new multiconfiguration project and check out your Magento Module.
+- create a new axis on the configuration matrix, named "MAGENTO_VERSION" and add the following values
+
+```
+magento-ce-1.9.0.1
+magento-ce-1.8.1.0
+magento-ce-1.8.0.0
+magento-ce-1.7.0.2
+```
+
+- Make sure that the configurations are build sequentiell, otherwise you might run into database issues!
+- use the following script as a shell build step
+
+```bash
+rm -rf ${WORKSPACE}/build-environment
+git clone https://github.com/AOEpeople/MageTestStand.git ${WORKSPACE}/build-environment
+ln -s ${WORKSPACE} ${WORKSPACE}/build-environment/.modman/__testModule
+${WORKSPACE}/build-environment/install.sh
+
+cd ${WORKSPACE}/build-environment/htdocs
+${WORKSPACE}/build-environment/bin/phpunit --colors -d display_errors=1
+```
+
+- enable "activate chuck norris" as a post build action to add awesomeness
