@@ -14,7 +14,12 @@ It uses following tools:
 
 - database 'mage' (user 'root', blank password) This is the datatbase Magento uses
 - database 'mage_test' (user 'root', blank password) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
-- Environment variable "MAGENTO_VERSION" with valid Magento version for n98-magerun's install command
+- You can specify the database credentials using
+- - `MAGENTO_DB_HOST`
+- - `MAGENTO_DB_USER`
+- - `MAGENTO_DB_PASS`
+- - `MAGENTO_DB_NAME`
+- Environment variable `MAGENTO_VERSION` with valid Magento version for n98-magerun's install command
 
 ## Travis CI configuration
 
