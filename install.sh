@@ -7,7 +7,7 @@ SOURCE_DIR=`dirname "${ABSPATH}"`
 if [ -z $MAGENTO_DB_HOST ]; then MAGENTO_DB_HOST="localhost"; fi
 if [ -z $MAGENTO_DB_USER ]; then MAGENTO_DB_USER="root"; fi
 if [ -z $MAGENTO_DB_PASS ]; then MAGENTO_DB_PASS=""; fi
-if [ -z $MAGENTO_DB_NAME ]; then MAGENTO_DB_NAME="mage"; fi
+if [ -z $MAGENTO_DB_NAME ]; then MAGENTO_DB_NAME="mageteststand"; fi
 
 echo
 echo "---------------------"
@@ -25,6 +25,14 @@ echo
 cd ${SOURCE_DIR}
 
 if [ ! -f htdocs/app/etc/local.xml ] ; then
+    mysql -u${MAGENTO_DB_USER} -p${MAGENTO_DB_PASS} -h${MAGENTO_DB_HOST} -e "DROP DATABASE IF EXISTS ${MAGENTO_DB_NAME}; CREATE DATABASE ${MAGENTO_DB_NAME};"
+    mysql -u${MAGENTO_DB_USER} -p${MAGENTO_DB_PASS} -h${MAGENTO_DB_HOST} -e "DROP DATABASE IF EXISTS ${MAGENTO_DB_NAME}_test; CREATE DATABASE ${MAGENTO_DB_NAME}_test;"
+
+    sed -i -e s/MAGENTO_DB_HOST/${MAGENTO_DB_HOST}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_USER/${MAGENTO_DB_USER}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_PASS/${MAGENTO_DB_PASS}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_NAME/${MAGENTO_DB_NAME}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+
     tools/n98-magerun.phar install \
       --dbHost="${MAGENTO_DB_HOST}" --dbUser="${MAGENTO_DB_USER}" --dbPass="${MAGENTO_DB_PASS}" --dbName="${MAGENTO_DB_NAME}" \
       --installSampleData=no \
