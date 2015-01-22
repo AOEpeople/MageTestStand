@@ -12,16 +12,16 @@ It uses following tools:
 
 ## Requirements
 
-- database 'mageteststand' (user 'root', blank password) This is the datatbase Magento uses
+- database 'mageteststand' (user 'root', blank password) This is the database Magento uses
 - database 'mageteststand_test' (user 'root', blank password) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
-- You can specify the database credentials using
+- You can override the default database credentials using following environment variables:
   - `MAGENTO_DB_HOST`
   - `MAGENTO_DB_USER`
   - `MAGENTO_DB_PASS`
   - `MAGENTO_DB_NAME`
 - Environment variable `MAGENTO_VERSION` with valid Magento version for n98-magerun's install command
 
-## Generic usage
+## General usage
 
 - Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.0.1
 - Set the environment variable `WORKSPACE` to the directory of the magento module
