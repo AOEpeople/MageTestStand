@@ -16,6 +16,7 @@ It uses following tools:
 - database 'mageteststand_test' (user 'root', blank password) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
 - You can override the default database credentials using following environment variables:
   - `MAGENTO_DB_HOST`
+  - `MAGENTO_DB_PORT`
   - `MAGENTO_DB_USER`
   - `MAGENTO_DB_PASS`
   - `MAGENTO_DB_NAME`
@@ -84,6 +85,7 @@ export MAGENTO_VERSION=magento-ce-1.9.0.1
 
 # if necessary
 export MAGENTO_DB_HOST=somewhere
+export MAGENTO_DB_PORT=somenum
 export MAGENTO_DB_USER=someone
 export MAGENTO_DB_PASS=something
 export MAGENTO_DB_NAME=somename
