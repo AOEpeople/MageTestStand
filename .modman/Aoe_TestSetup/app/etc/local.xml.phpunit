@@ -7,6 +7,7 @@
                 <username><![CDATA[MAGENTO_DB_USER]]></username>
                 <password><![CDATA[MAGENTO_DB_PASS]]></password>
                 <dbname><![CDATA[MAGENTO_DB_NAME_test]]></dbname>
+                <port><![CDATA[MAGENTO_DB_PORT]]></port>
             </connection>
          </default_setup>
       </resources>
