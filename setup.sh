@@ -2,14 +2,15 @@
 set -e
 set -x
  
-# check if this is a travis environment
+
 function cleanup {
   echo "Removing build directory ${BUILDENV}"
   rm -rf "${BUILDENV}"
 }
  
 trap cleanup EXIT
- 
+
+# check if this is a travis environment
 if [ ! -z $TRAVIS_BUILD_DIR ] ; then
   WORKSPACE=$TRAVIS_BUILD_DIR
 fi
@@ -23,8 +24,8 @@ BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
  
 echo "Using build directory ${BUILDENV}"
  
-git clone https://github.com/AOEpeople/MageTestStand.git ${BUILDENV}
-cp -rf ${WORKSPACE} ${BUILDENV}/.modman/
+git clone https://github.com/AOEpeople/MageTestStand.git "${BUILDENV}"
+cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
  
 cd ${BUILDENV}/htdocs
