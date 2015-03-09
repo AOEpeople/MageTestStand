@@ -5,7 +5,7 @@ set -x
 # check if this is a travis environment
 function cleanup {
   echo "Removing build directory ${BUILDENV}"
-  rm -rf ${BUILDENV}
+  rm -rf "${BUILDENV}"
 }
  
 trap cleanup EXIT
