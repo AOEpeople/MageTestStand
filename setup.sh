@@ -4,8 +4,10 @@ set -x
  
 
 function cleanup {
-  echo "Removing build directory ${BUILDENV}"
-  rm -rf "${BUILDENV}"
+  if [ -z $SKIP_CLEANUP ]; then
+    echo "Removing build directory ${BUILDENV}"
+    rm -rf "${BUILDENV}"
+  fi
 }
  
 trap cleanup EXIT
