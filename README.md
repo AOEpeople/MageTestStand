@@ -3,12 +3,12 @@
 This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI.
 
 It uses following tools:
-- n98-magerun (to install a vanilla Magento instance for a given version number)
-- modman (to link your module to the Magento instance)
-- EcomDev_PHPUnit (actually, the AOE fork,... for some helpers that make unit testing in Magento much easier)
-- PHPUnit
-- Composer
-- aoepeople/composer-installers (minimal composer installer for Magento modules which acts as a replacement for 'magento-hackathon/magento-composer-installer')
+- [n98-magerun](https://github.com/netz98/n98-magerun) (to install a vanilla Magento instance for a given version number)
+- [modman](https://github.com/colinmollenhour/modman) (to link your module to the Magento instance)
+- [EcomDev_PHPUnit](https://github.com/AOEpeople/EcomDev_PHPUnit) (actually, the AOE fork,... for some helpers that make unit testing in Magento much easier)
+- [PHPUnit](https://phpunit.de/)
+- [Composer](https://getcomposer.org/)
+- [aoepeople/composer-installers](https://github.com/AOEpeople/composer-installers) (minimal composer installer for Magento modules which acts as a replacement for '[magento-hackathon/magento-composer-installer](https://github.com/magento-hackathon/magento-composer-installer)')
 
 ## Requirements
 
