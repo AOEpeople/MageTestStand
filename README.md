@@ -12,14 +12,16 @@ It uses following tools:
 
 ## Requirements
 
-- database 'mageteststand' (user 'root', blank password) This is the database Magento uses
-- database 'mageteststand_test' (user 'root', blank password) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
+- Main Database: defaults to 'mageteststand' (user 'root', blank password) This is the database Magento uses
+- Test Database: main database name with '_test' appended: 'mageteststand_test' (host, username, password and port are the same as the main database) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
 - You can override the default database credentials using following environment variables:
   - `MAGENTO_DB_HOST`
   - `MAGENTO_DB_PORT`
   - `MAGENTO_DB_USER`
   - `MAGENTO_DB_PASS`
   - `MAGENTO_DB_NAME`
+- In case you want to allow EcomDev_PHPUnit to use the main database instead of the test database you can set following environment variable to 1. This might be required if you're planning on writing integration tests.
+  - `MAGENTO_DB_ALLOWSAME`
 - Environment variable `MAGENTO_VERSION` with valid Magento version for n98-magerun's install command
 
 ## General usage
@@ -77,8 +79,7 @@ magento-ce-1.7.0.2
 - use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash`
 
 ## Unittest your Module directly from bash/zsh/shell
-- set up your environment
-
+- Set up your environment
 ```bash
 export WORKSPACE=/full/path/to/your/module
 export MAGENTO_VERSION=magento-ce-1.9.0.1
@@ -91,4 +92,7 @@ export MAGENTO_DB_PASS=something
 export MAGENTO_DB_NAME=somename
 ```
 
-- run `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash`
+- Run MageTestStand:
+```
+curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
+```
