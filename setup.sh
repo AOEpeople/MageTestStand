@@ -12,8 +12,6 @@ function cleanup {
  
 trap cleanup EXIT
 
-pecl install xdebug
-
 # check if this is a travis environment
 if [ ! -z $TRAVIS_BUILD_DIR ] ; then
   WORKSPACE=$TRAVIS_BUILD_DIR
