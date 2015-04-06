@@ -29,7 +29,7 @@ It uses following tools:
 - Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.0.1
 - Set the environment variable `WORKSPACE` to the directory of the magento module
 - checkout your magento module
-- run `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
+- run `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
 - you can use the script contents as a build step for sure, but this way it's easier ;)
 
 ## Travis CI configuration
@@ -54,7 +54,7 @@ env:
   - MAGENTO_VERSION=magento-ce-1.8.0.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
 script:
-  - curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
+  - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 notifications:
   email:
     recipients:
@@ -94,5 +94,5 @@ export MAGENTO_DB_NAME=somename
 
 - Run MageTestStand:
 ```
-curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
+curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 ```
