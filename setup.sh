@@ -12,7 +12,7 @@ function cleanup {
  
 trap cleanup EXIT
 
-echo "zend_extenstion = xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+pecl install xdebug
 
 # check if this is a travis environment
 if [ ! -z $TRAVIS_BUILD_DIR ] ; then
@@ -52,6 +52,8 @@ echo "Exporting test results to code climate"
 cd ${BUILDENV}
 vendor/codeclimate/php-test-reporter/composer/bin/test-reporter --stdout > codeclimate.json
 curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v1.0.1-dev)' https://codeclimate.com/test_reports
+
+
 
 echo "Exporting test results to scrutinizer"
 cd ${BUILDENV}
