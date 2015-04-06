@@ -39,18 +39,22 @@ curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
 chmod +x ${BUILDENV}/tools/composer
 curl -s -L https://phar.phpunit.de/phploc.phar -o ${BUILDENV}/tools/phploc
 chmod +x ${BUILDENV}/tools/phploc
+curl -s -L https://scrutinizer-ci.com/ocular.phar -o ${BUILDENV}/tools/ocular
+chmod +x ${BUILDENV}/tools/ocular
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
- 
+
 cd ${BUILDENV}/htdocs
-cp ${WORKSPACE}/phpunit.xml.dist .
-${BUILDENV}/bin/phpunit --coverage-clover
-${BUILDENV}/bin/phpunit --colors -d display_errors=1
+${BUILDENV}/bin/phpunit --coverage-clover=coverage.clover --colors -d display_errors=1
 
 echo "Exporting test results to code climate"
 cd ${BUILDENV}
 vendor/codeclimate/php-test-reporter/composer/bin/test-reporter --stdout > codeclimate.json
 curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v1.0.1-dev)' https://codeclimate.com/test_reports
+
+echo "Exporting test results to scrutinizer"
+cd ${BUILDENV}
+ocular code-coverage:upload --format=php-clover coverage.clover
 
 echo "Done."
