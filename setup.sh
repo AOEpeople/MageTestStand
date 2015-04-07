@@ -48,8 +48,7 @@ ${BUILDENV}/bin/phpunit --coverage-clover=${BUILDENV}/build/logs/clover.xml --co
 
 echo "Exporting code coverage results to codeclimate"
 cd ${BUILDENV}
-vendor/codeclimate/php-test-reporter/composer/bin/test-reporter --stdout > codeclimate.json
-curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v1.0.1-dev)' https://codeclimate.com/test_reports
+vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
 
 echo "Exporting code coverage results to scrutinizer"
 cd ${BUILDENV}
