@@ -50,8 +50,8 @@ echo "Exporting code coverage results to codeclimate"
 cd ${BUILDENV}
 vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
 
-echo "Exporting code coverage results to scrutinizer"
-cd ${BUILDENV}
-${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
+#echo "Exporting code coverage results to scrutinizer"
+#cd ${BUILDENV}
+#${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
 
 echo "Done."
