@@ -52,6 +52,6 @@ vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
 
 echo "Exporting code coverage results to scrutinizer"
 cd ${BUILDENV}
-${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover ${BUILDENV}/build/logs/clover.xml
+${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
 
 echo "Done."
