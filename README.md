@@ -1,3 +1,7 @@
+[![GitHub tag](https://img.shields.io/github/tag/ffuenf/MageTestStand.svg)][tag]
+
+[tag]: https://github.com/ffuenf/MageTestStand
+
 # MageTestStand
 
 This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI.
@@ -26,7 +30,7 @@ It uses following tools:
 
 ## General usage
 
-- Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.0.1
+- Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.1.0
 - Set the environment variable `WORKSPACE` to the directory of the magento module
 - checkout your magento module
 - run `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
@@ -38,6 +42,7 @@ Example .travis.yaml file (in the Magento module you want to test):
 
 ```yml
 language: php
+sudo: false
 php:
   - 5.3
   - 5.4
@@ -49,10 +54,10 @@ matrix:
   - php: 5.6
   - php: hhvm
 env:
-  - MAGENTO_VERSION=magento-ce-1.9.0.1
+  - MAGENTO_VERSION=magento-ce-1.9.1.0
   - MAGENTO_VERSION=magento-ce-1.8.1.0
-  - MAGENTO_VERSION=magento-ce-1.8.0.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
+  - MAGENTO_VERSION=magento-ce-1.6.2.0
 script:
   - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 notifications:
@@ -69,20 +74,20 @@ notifications:
 - create a new axis on the configuration matrix, named "MAGENTO_VERSION" and add the following values
 
 ```
-magento-ce-1.9.0.1
+magento-ce-1.9.1.0
 magento-ce-1.8.1.0
-magento-ce-1.8.0.0
 magento-ce-1.7.0.2
+magento-ce-1.6.2.0
 ```
 
 - Make sure that the configurations are build sequentiell, otherwise you might run into database issues!
-- use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash`
+- use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash`
 
 ## Unittest your Module directly from bash/zsh/shell
 - Set up your environment
 ```bash
 export WORKSPACE=/full/path/to/your/module
-export MAGENTO_VERSION=magento-ce-1.9.0.1
+export MAGENTO_VERSION=magento-ce-1.9.1.0
 
 # if necessary
 export MAGENTO_DB_HOST=somewhere
