@@ -1,3 +1,7 @@
+[![GitHub tag](https://img.shields.io/github/tag/ffuenf/MageTestStand.svg)][tag]
+
+[tag]: https://github.com/ffuenf/MageTestStand
+
 # MageTestStand
 
 This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI.
