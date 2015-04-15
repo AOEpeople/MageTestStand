@@ -13,7 +13,7 @@ if [ -z $MAGENTO_DB_ALLOWSAME ]; then MAGENTO_DB_ALLOWSAME="0"; fi
 
 echo
 echo "---------------------"
-echo "- AOE MageTestStand -"
+echo "- Ffuenf MageTestStand -"
 echo "---------------------"
 echo
 echo "Installing ${MAGENTO_VERSION} in ${SOURCE_DIR}/htdocs"
@@ -36,18 +36,18 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
     if [ ! -z $MAGENTO_DB_PASS ]; then MYSQLPASS="-p${MAGENTO_DB_PASS}"; fi
     mysql -u${MAGENTO_DB_USER} ${MYSQLPASS} -h${MAGENTO_DB_HOST} -P${MAGENTO_DB_PORT} -e "DROP DATABASE IF EXISTS ${MAGENTO_DB_NAME}; CREATE DATABASE ${MAGENTO_DB_NAME};"
 
-    sed -i -e s/MAGENTO_DB_HOST/${MAGENTO_DB_HOST}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
-    sed -i -e s/MAGENTO_DB_PORT/${MAGENTO_DB_PORT}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
-    sed -i -e s/MAGENTO_DB_USER/${MAGENTO_DB_USER}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
-    sed -i -e s/MAGENTO_DB_PASS/${MAGENTO_DB_PASS}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
-    sed -i -e s/MAGENTO_DB_ALLOWSAME/${MAGENTO_DB_ALLOWSAME}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_HOST/${MAGENTO_DB_HOST}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_PORT/${MAGENTO_DB_PORT}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_USER/${MAGENTO_DB_USER}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_PASS/${MAGENTO_DB_PASS}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
+    sed -i -e s/MAGENTO_DB_ALLOWSAME/${MAGENTO_DB_ALLOWSAME}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
 
     if [ $MAGENTO_DB_ALLOWSAME == "0" ] ; then
       # Create test database
       mysql -u${MAGENTO_DB_USER} ${MYSQLPASS} -h${MAGENTO_DB_HOST} -P${MAGENTO_DB_PORT} -e "DROP DATABASE IF EXISTS ${MAGENTO_DB_NAME}_test; CREATE DATABASE ${MAGENTO_DB_NAME}_test;"
-      sed -i -e s/MAGENTO_DB_NAME/${MAGENTO_DB_NAME}_test/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+      sed -i -e s/MAGENTO_DB_NAME/${MAGENTO_DB_NAME}_test/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
     else
-      sed -i -e s/MAGENTO_DB_NAME/${MAGENTO_DB_NAME}/g .modman/Aoe_TestSetup/app/etc/local.xml.phpunit
+      sed -i -e s/MAGENTO_DB_NAME/${MAGENTO_DB_NAME}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
     fi
 
     tools/n98-magerun install \

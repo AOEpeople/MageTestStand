@@ -13,7 +13,7 @@
          verbose="false"
          bootstrap="app/code/community/EcomDev/PHPUnit/bootstrap.php"
          printerClass="PHPUnit_VerboseResultPrinter"
-         printerFile="lib/aoe_testsetup/PHPUnit_VerboseResultPrinter.php">
+         printerFile="lib/ffuenf_testsetup/PHPUnit_VerboseResultPrinter.php">
    <listeners>
        <listener file="app/code/community/EcomDev/PHPUnit/Test/Listener.php" class="EcomDev_PHPUnit_Test_Listener" />
    </listeners>

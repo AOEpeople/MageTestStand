@@ -1,3 +1,7 @@
+## 0.0.3.2 (ffuenf)
+- switch namespace to ffuenf_MageTestStand
+- conditionally switch code climate
+
 ## 0.0.3.1 (ffuenf)
 - switch namespace to ffuenf_MageTestStand
 - fix code coverage (code climate)

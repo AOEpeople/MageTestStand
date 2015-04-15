@@ -46,9 +46,11 @@ ${BUILDENV}/install.sh
 cd ${BUILDENV}/htdocs
 ${BUILDENV}/bin/phpunit --coverage-clover=${BUILDENV}/build/logs/clover.xml --colors -d display_errors=1
 
-echo "Exporting code coverage results to codeclimate"
-cd ${BUILDENV}
-vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
+if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
+  echo "Exporting code coverage results to codeclimate"
+  cd ${BUILDENV}
+  vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
+fi
 
 #echo "Exporting code coverage results to scrutinizer"
 #cd ${BUILDENV}

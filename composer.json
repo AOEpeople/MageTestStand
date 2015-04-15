@@ -3,7 +3,8 @@
     "require": {
         "aoepeople/composer-installers": "*",
         "ivanchepurnyi/ecomdev_phpunit": "dev-dev",
-        "codeclimate/php-test-reporter": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master",
+        "magento-ecg/coding-standard": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
@@ -11,7 +12,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/AOEpeople/EcomDev_PHPUnit.git"
+            "url": "https://github.com/AOEpeople/EcomDev_PHPUnit"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/magento-ecg/coding-standard"
         }
     ]
 }
