@@ -2,7 +2,7 @@
     "minimum-stability": "dev",
     "require": {
         "aoepeople/composer-installers": "*",
-        "ecomdev/ecomdev_phpunit": "dev-master",
+        "ivanchepurnyi/ecomdev_phpunit": "dev-dev",
         "codeclimate/php-test-reporter": "dev-master",
         "magento-ecg/coding-standard": "dev-master"
     },
@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/EcomDev/EcomDev_PHPUnit"
+            "url": "https://github.com/AOEpeople/EcomDev_PHPUnit"
         },
         {
             "type": "vcs",
