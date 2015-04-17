@@ -26,10 +26,10 @@ BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
  
 echo "Using build directory ${BUILDENV}"
  
-git clone https://github.com/ffuenf/MageTestStand.git "${BUILDENV}"
+git clone https://github.com/ffuenf/MageTestStand/tree/testing "${BUILDENV}"
 
 mkdir ${BUILDENV}/tools
-curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/5ffd5758081d9f6da072efd3a1a331b5e7acbf3a/modman -o ${BUILDENV}/tools/modman
+curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${BUILDENV}/tools/modman
 chmod +x ${BUILDENV}/tools/modman
 curl -s -L https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar -o ${BUILDENV}/tools/n98-magerun
 chmod +x ${BUILDENV}/tools/n98-magerun
