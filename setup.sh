@@ -22,7 +22,7 @@ if [ -z $WORKSPACE ] ; then
 fi
  
 BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
-if [ -z ${TOOLS_DIR} ]; then ${TOOLS_DIR}=${BUILDENV}/tools; fi
+if [ -z $TOOLS_DIR ]; then TOOLS_DIR=$BUILDENV/tools; fi
 
 echo "Using build directory ${BUILDENV}"
  
