@@ -28,7 +28,7 @@ echo "Using build directory ${BUILDENV}"
  
 git clone -b testing https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
-mkdir ${BUILDENV}/${TOOLS_DIR}
+mkdir ${TOOLS_DIR}
 curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${TOOLS_DIR}/modman
 chmod +x ${TOOLS_DIR}/modman
 curl -s -L https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar -o ${TOOLS_DIR}/n98-magerun
