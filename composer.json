@@ -1,22 +1,23 @@
 {
-    "minimum-stability": "dev",
-    "require": {
-        "aoepeople/composer-installers": "*",
-        "ivanchepurnyi/ecomdev_phpunit": "dev-dev",
-        "codeclimate/php-test-reporter": "dev-master",
-        "magento-ecg/coding-standard": "dev-master"
+  "minimum-stability": "dev",
+  "require": {
+    "aoepeople/composer-installers": "*",
+    "ecomdev/ecomdev_phpunit": "*",
+    "phpunit/phpunit": "4.1.*",
+    "codeclimate/php-test-reporter": "dev-master",
+    "magento-ecg/coding-standard": "dev-master"
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://packages.firegento.com"
     },
-    "config": {
-        "bin-dir": "bin"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/AOEpeople/EcomDev_PHPUnit"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/magento-ecg/coding-standard"
-        }
-    ]
+    {
+      "type": "vcs",
+      "url": "https://github.com/magento-ecg/coding-standard"
+    }
+  ]
 }
