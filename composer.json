@@ -3,9 +3,10 @@
   "require": {
     "aoepeople/composer-installers": "*",
     "ecomdev/ecomdev_phpunit": "dev-dev",
-    "phpunit/phpunit": "4.*",
     "codeclimate/php-test-reporter": "dev-master",
-    "magento-ecg/coding-standard": "dev-master"
+    "magento-ecg/coding-standard": "dev-master",
+    "squizlabs/php_codesniffer": "*",
+    "phpmd/phpmd": "*"
   },
   "config": {
     "bin-dir": "bin"
