@@ -34,7 +34,7 @@ fi
 
 echo "Using build directory ${BUILDENV}"
  
-git clone -b testing https://github.com/ffuenf/MageTestStand "${BUILDENV}"
+git clone https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
 mkdir ${TOOLS_DIR}
 curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${TOOLS_DIR}/modman

@@ -1,20 +1,21 @@
+MageTestStand
+=============
 [![GitHub tag](https://img.shields.io/github/tag/ffuenf/MageTestStand.svg)][tag]
 
 [tag]: https://github.com/ffuenf/MageTestStand
-
-# MageTestStand
 
 This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI.
 
 It uses following tools:
 - [n98-magerun](https://github.com/netz98/n98-magerun) (to install a vanilla Magento instance for a given version number)
 - [modman](https://github.com/colinmollenhour/modman) (to link your module to the Magento instance)
-- [EcomDev_PHPUnit](https://github.com/AOEpeople/EcomDev_PHPUnit) (actually, the AOE fork,... for some helpers that make unit testing in Magento much easier)
+- [EcomDev_PHPUnit](https://github.com/ecomdev/EcomDev_PHPUnit)
 - [PHPUnit](https://phpunit.de/)
 - [Composer](https://getcomposer.org/)
 - [aoepeople/composer-installers](https://github.com/AOEpeople/composer-installers) (minimal composer installer for Magento modules which acts as a replacement for '[magento-hackathon/magento-composer-installer](https://github.com/magento-hackathon/magento-composer-installer)')
 
-## Requirements
+Requirements
+------------
 
 - Main Database: defaults to 'mageteststand' (user 'root', blank password) This is the database Magento uses
 - Test Database: main database name with '_test' appended: 'mageteststand_test' (host, username, password and port are the same as the main database) This is the dummy database EcomDev_PHPUnit will use. Although you can configure this to use the original database, some tests (including fixtures) will behave differently...
@@ -28,7 +29,8 @@ It uses following tools:
   - `MAGENTO_DB_ALLOWSAME`
 - Environment variable `MAGENTO_VERSION` with valid Magento version for n98-magerun's install command
 
-## General usage
+General usage
+-------------
 
 - Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.1.0
 - Set the environment variable `WORKSPACE` to the directory of the magento module
@@ -36,7 +38,8 @@ It uses following tools:
 - run `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
 - you can use the script contents as a build step for sure, but this way it's easier ;)
 
-## Travis CI configuration
+Travis CI configuration
+-----------------------
 
 Example .travis.yaml file (in the Magento module you want to test):
 
@@ -68,7 +71,8 @@ notifications:
     on_failure: always
 ```
 
-## Jenkins configuration
+Jenkins configuration
+---------------------
 
 - create a new multiconfiguration project and check out your Magento Module.
 - create a new axis on the configuration matrix, named "MAGENTO_VERSION" and add the following values
@@ -83,13 +87,15 @@ magento-ce-1.6.2.0
 - Make sure that the configurations are build sequentiell, otherwise you might run into database issues!
 - use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash`
 
-## Unittest your Module directly from bash/zsh/shell
+Unittest your Module directly from bash/zsh/shell
+-------------------------------------------------
+
 - Set up your environment
 ```bash
 export WORKSPACE=/full/path/to/your/module
 export MAGENTO_VERSION=magento-ce-1.9.1.0
 
-# if necessary
+if necessary
 export MAGENTO_DB_HOST=somewhere
 export MAGENTO_DB_PORT=somenum
 export MAGENTO_DB_USER=someone
@@ -101,3 +107,41 @@ export MAGENTO_DB_NAME=somename
 ```
 curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 ```
+
+Development
+-----------
+1. Fork the repository from GitHub.
+2. Clone your fork to your local machine:
+
+        $ git clone https://github.com/USER/MageTestStand
+
+3. Create a git branch
+
+        $ git checkout -b my_bug_fix
+
+4. Make your changes/patches/fixes, committing appropriately
+5. Push your changes to GitHub
+6. Open a Pull Request
+
+License and Author
+------------------
+
+- Author:: Fabrizio Branca (<mail@fabrizio-branca.de>)
+- Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
+- Copyright:: 2015, ffuenf
+
+GNU GENERAL PUBLIC LICENSE Version 3
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA

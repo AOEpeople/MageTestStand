@@ -1,18 +1,6 @@
-## 0.0.3.2 (ffuenf)
-- switch namespace to ffuenf_MageTestStand
-- conditionally switch code climate
+# CHANGELOG for MageTestStand
 
-## 0.0.3.1 (ffuenf)
-- switch namespace to ffuenf_MageTestStand
-- fix code coverage (code climate)
-- add (but disable) code coverage via scrutinizer-ci
+This file is used to list changes made in each version of MageTestStand.
 
-## 0.0.3
-- updated README with newest example scripts
-
-## 0.0.2
-- updated install.sh to ensure correct database values
-
-## 0.0.1
-- Basic MageTestStand toolset
-
+## 1.0.0
+- adjusted MageTestStand toolset by ffuenf
