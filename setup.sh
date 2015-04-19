@@ -24,7 +24,7 @@ fi
 BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
 
 if [ ! -z $TOOLS_DIR ] ; then
-  TOOLS_DIR=$BUILDENV/tools
+  TOOLS_DIR=${BUILDENV}/tools
 fi
 
 if [ -z $TOOLS_DIR ] ; then
