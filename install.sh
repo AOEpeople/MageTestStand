@@ -10,6 +10,7 @@ if [ -z $MAGENTO_DB_USER ]; then MAGENTO_DB_USER="root"; fi
 if [ -z $MAGENTO_DB_PASS ]; then MAGENTO_DB_PASS=""; fi
 if [ -z $MAGENTO_DB_NAME ]; then MAGENTO_DB_NAME="mageteststand"; fi
 if [ -z $MAGENTO_DB_ALLOWSAME ]; then MAGENTO_DB_ALLOWSAME="0"; fi
+if [ -z ${TOOLS_DIR} ]; then ${TOOLS_DIR}="tools"; fi
 
 echo
 echo "---------------------"
@@ -50,7 +51,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
       sed -i -e s/MAGENTO_DB_NAME/${MAGENTO_DB_NAME}/g .modman/Ffuenf_TestSetup/app/etc/local.xml.phpunit
     fi
 
-    tools/n98-magerun install \
+    ${TOOLS_DIR}/n98-magerun install \
       --dbHost="${MAGENTO_DB_HOST}" --dbUser="${MAGENTO_DB_USER}" --dbPass="${MAGENTO_DB_PASS}" --dbName="${MAGENTO_DB_NAME}" --dbPort="${MAGENTO_DB_PORT}" \
       --installSampleData=no \
       --useDefaultConfigParams=yes \
@@ -63,6 +64,5 @@ if [ ! -f composer.lock ] ; then
     tools/composer install
 fi
 
-tools/modman deploy-all --force
-
-tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
+${TOOLS_DIR}/modman deploy-all --force
+${TOOLS_DIR}/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
