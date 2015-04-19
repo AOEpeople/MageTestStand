@@ -2,7 +2,7 @@
   "minimum-stability": "dev",
   "require": {
     "aoepeople/composer-installers": "*",
-    "aoepeople/ecomdev_phpunit": "*",
+    "ecomdev/ecomdev_phpunit": "dev-dev",
     "phpunit/phpunit": "4.*",
     "codeclimate/php-test-reporter": "dev-master",
     "magento-ecg/coding-standard": "dev-master"
