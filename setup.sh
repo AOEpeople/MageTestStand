@@ -23,25 +23,21 @@ fi
  
 BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
 
-if [ -z $TOOLS_DIR ] ; then
-  TOOLS_DIR="${BUILDENV}/tools"
-fi
-
 echo "Using build directory ${BUILDENV}"
  
 git clone https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
-mkdir ${TOOLS_DIR}
-curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${TOOLS_DIR}/modman
-chmod +x ${TOOLS_DIR}/modman
-curl -s -L https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar -o ${TOOLS_DIR}/n98-magerun
-chmod +x ${TOOLS_DIR}/n98-magerun
-curl -s -L https://getcomposer.org/composer.phar -o ${TOOLS_DIR}/composer
-chmod +x ${TOOLS_DIR}/composer
-curl -s -L https://phar.phpunit.de/phploc.phar -o ${TOOLS_DIR}/phploc
-chmod +x ${TOOLS_DIR}/phploc
-curl -s -L https://scrutinizer-ci.com/ocular.phar -o ${TOOLS_DIR}/ocular
-chmod +x ${TOOLS_DIR}/ocular
+mkdir ${BUILDENV}/tools
+curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${BUILDENV}/tools/modman
+chmod +x ${BUILDENV}/tools/modman
+curl -s -L https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar -o ${BUILDENV}/tools/n98-magerun
+chmod +x ${BUILDENV}/tools/n98-magerun
+curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
+chmod +x ${BUILDENV}/tools/composer
+curl -s -L https://phar.phpunit.de/phploc.phar -o ${BUILDENV}/tools/phploc
+chmod +x ${BUILDENV}/tools/phploc
+curl -s -L https://scrutinizer-ci.com/ocular.phar -o ${BUILDENV}/tools/ocular
+chmod +x ${BUILDENV}/tools/ocular
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
@@ -57,6 +53,6 @@ fi
 
 #echo "Exporting code coverage results to scrutinizer"
 #cd ${BUILDENV}
-#${TOOLS_DIR}/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
+#${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
 
 echo "Done."
