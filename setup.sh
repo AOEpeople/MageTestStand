@@ -24,12 +24,7 @@ fi
 BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
 
 if [ ! -z $TOOLS_DIR ] ; then
-  TOOLS_DIR=${BUILDENV}/tools
-fi
-
-if [ -z $TOOLS_DIR ] ; then
-  echo "No tools directory configured, please set your TOOLS_DIR"
-  exit
+  TOOLS_DIR="${BUILDENV}/tools"
 fi
 
 echo "Using build directory ${BUILDENV}"
