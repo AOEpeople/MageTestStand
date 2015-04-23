@@ -10,7 +10,7 @@ if [ -z $MAGENTO_DB_USER ]; then MAGENTO_DB_USER="root"; fi
 if [ -z $MAGENTO_DB_PASS ]; then MAGENTO_DB_PASS=""; fi
 if [ -z $MAGENTO_DB_NAME ]; then MAGENTO_DB_NAME="mageteststand"; fi
 if [ -z $MAGENTO_DB_ALLOWSAME ]; then MAGENTO_DB_ALLOWSAME="0"; fi
-if [ -z ${TOOLS_DIR} ]; then ${TOOLS_DIR}="tools"; fi
+if [ -z $TOOLS_DIR ]; then TOOLS_DIR="tools"; fi
 
 echo
 echo "---------------------"
