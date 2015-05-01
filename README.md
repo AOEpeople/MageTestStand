@@ -49,6 +49,9 @@ matrix:
   - php: 5.6
   - php: hhvm
 env:
+#  global:
+#    - MAGENTO_DB_ALLOWSAME=1
+#    - SKIP_CLEANUP=1
   - MAGENTO_VERSION=magento-ce-1.9.0.1
   - MAGENTO_VERSION=magento-ce-1.8.1.0
   - MAGENTO_VERSION=magento-ce-1.8.0.0
@@ -95,4 +98,15 @@ export MAGENTO_DB_NAME=somename
 - Run MageTestStand:
 ```
 curl -sSL https://raw.githubusercontent.com/AOEpeople/MageTestStand/master/setup.sh | bash
+```
+
+## Misc
+
+### Skip cleanup
+
+If you're running this in an CI environment that will delete the workspace after the run (e.g. Travis CI) you might not want to wait for this script to explicitely cleanup. Using `SKIP_CLEANUP` parameter you can make MageTestStand skip this step. 
+
+This parameter can be set via an environment variable (Travis CI supports that via env/global) or from command line:
+```
+export SKIP_CLEANUP=1
 ```
