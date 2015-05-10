@@ -28,10 +28,10 @@ echo "Using build directory ${BUILDENV}"
  
 git clone https://github.com/AOEpeople/MageTestStand.git "${BUILDENV}"
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
-if [ -d "${WORKSPACE}/vendor" ] ; then
-  cp -rf "${WORKSPACE}/vendor/*" "${BUILDENV}/vendor/"
-fi
 ${BUILDENV}/install.sh
+if [ -d "${WORKSPACE}/vendor" ] ; then
+  cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+fi
  
 cd ${BUILDENV}/htdocs
 ${BUILDENV}/bin/phpunit --colors -d display_errors=1
