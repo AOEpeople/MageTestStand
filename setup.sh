@@ -51,8 +51,10 @@ if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
   vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
 fi
 
-#echo "Exporting code coverage results to scrutinizer"
-#cd ${BUILDENV}
-#${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
+if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
+  echo "Exporting code coverage results to scrutinizer-ci"
+  cd ${BUILDENV}
+  php ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
+fi
 
 echo "Done."
