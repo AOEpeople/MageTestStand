@@ -46,18 +46,4 @@ ${BUILDENV}/install.sh
 cd ${BUILDENV}/htdocs
 ${BUILDENV}/bin/phpunit --coverage-text --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
-if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
-  echo "Exporting code coverage results to codeclimate"
-  cd ${WORKSPACE}
-  ${BUILDENV}/vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
-fi
-
-#echo "Exporting code coverage results to scrutinizer-ci"
-#cd ${BUILDENV}/build/logs
-#if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
-#  php -f ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover clover.xml
-#else
-#  php -f ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover clover.xml
-#fi
-
 echo "Done."
