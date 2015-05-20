@@ -27,6 +27,7 @@ echo "Using build directory ${BUILDENV}"
  
 git clone -b testing https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
+mkdir ${BUILDENV}/build/logs
 mkdir ${BUILDENV}/tools
 curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${BUILDENV}/tools/modman
 chmod +x ${BUILDENV}/tools/modman
@@ -52,11 +53,11 @@ if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
 fi
 
 echo "Exporting code coverage results to scrutinizer-ci"
-cd ${BUILDENV}/htdocs
+cd ${BUILDENV}/build/logs
 if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
-  php ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${BUILDENV}/build/logs/clover.xml
+  php -f ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover clover.xml
 else
-  php ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover ${BUILDENV}/build/logs/clover.xml
+  php -f ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover clover.xml
 fi
 
 echo "Done."
