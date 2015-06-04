@@ -8,7 +8,7 @@ function cleanup {
     rm -rf "${BUILDENV}"
   fi
 }
- 
+
 trap cleanup EXIT
 
 # check if this is a travis environment
@@ -20,18 +20,18 @@ if [ -z $WORKSPACE ] ; then
   echo "No workspace configured, please set your WORKSPACE environment"
   exit
 fi
- 
+
 BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
 
 echo "Using build directory ${BUILDENV}"
- 
+
 git clone -b testing https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
 mkdir -p ${WORKSPACE}/build/logs
 mkdir -p ${BUILDENV}/tools
 curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${BUILDENV}/tools/modman
 chmod +x ${BUILDENV}/tools/modman
-curl -s -L https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar -o ${BUILDENV}/tools/n98-magerun
+curl -s -L http://files.magerun.net/n98-magerun-latest.phar -o n98-magerun.phar -o ${BUILDENV}/tools/n98-magerun
 chmod +x ${BUILDENV}/tools/n98-magerun
 curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
 chmod +x ${BUILDENV}/tools/composer
@@ -42,6 +42,9 @@ chmod +x ${BUILDENV}/tools/ocular
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
+if [ -d "${WORKSPACE}/vendor" ] ; then
+    cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+fi
 
 cd ${BUILDENV}/htdocs
 ${BUILDENV}/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
