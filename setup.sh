@@ -31,7 +31,7 @@ mkdir -p ${WORKSPACE}/build/logs
 mkdir -p ${BUILDENV}/tools
 curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${BUILDENV}/tools/modman
 chmod +x ${BUILDENV}/tools/modman
-curl -s -L http://files.magerun.net/n98-magerun-latest.phar -o n98-magerun.phar -o ${BUILDENV}/tools/n98-magerun
+curl -s -L http://files.magerun.net/n98-magerun-latest.phar -o ${BUILDENV}/tools/n98-magerun
 chmod +x ${BUILDENV}/tools/n98-magerun
 curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
 chmod +x ${BUILDENV}/tools/composer
