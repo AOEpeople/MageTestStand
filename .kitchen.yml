@@ -1,0 +1,30 @@
+---
+driver:
+  name: vagrant
+  driver_config:
+    require_chef_omnibus: latest
+
+provisioner:
+  name: chef_zero
+  data_path: test/shared
+  solo_rb:
+    ssl_verify_mode: verify_peer
+
+platforms:
+- name: debian-7.9.0-amd64
+  driver_config:
+    box: ffuenf/debian-7.9.0-amd64
+    box_url: https://atlas.hashicorp.com/ffuenf/boxes/debian-7.9.0-amd64
+    box_check_update: true
+
+- name: ubuntu-14.04.3-server-amd64
+  driver_config:
+    box: ffuenf/ubuntu-14.04.3-server-amd64
+    box_url: https://atlas.hashicorp.com/ffuenf/boxes/ubuntu-14.04.3-server-amd64
+    box_check_update: true
+
+suites:
+- name: default
+  run_list:
+    - recipe[mageteststand::default]
+  attributes: {}

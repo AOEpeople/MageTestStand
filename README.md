@@ -1,8 +1,14 @@
 MageTestStand
 =============
 [![GitHub tag](https://img.shields.io/github/tag/ffuenf/MageTestStand.svg)][tag]
+[![Build Status](https://img.shields.io/travis/ffuenf/MageTestStand.svg)][travis]
+[![Code Climate](https://codeclimate.com/github/ffuenf/MageTestStand/badges/gpa.svg)][codeclimate_gpa]
+[![PayPal Donate](https://img.shields.io/badge/paypal-donate-blue.svg)][paypal_donate]
 
 [tag]: https://github.com/ffuenf/MageTestStand
+[travis]: https://travis-ci.org/ffuenf/MageTestStand
+[codeclimate_gpa]: https://codeclimate.com/github/ffuenf/MageTestStand
+[paypal_donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J2PQS2WLT2Y8W&item_name=Magento%20Extension%3a%20MageTestStand&item_number=MageTestStand&currency_code=EUR
 
 This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI.
 

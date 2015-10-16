@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.0.0
+- integrate chef
+
 ## 1.0.2
 - properly escape mysql db names
 - switch to new n98-magerun download location

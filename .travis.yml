@@ -1,0 +1,8 @@
+language: ruby
+sudo: false
+bundler_args: --without kitchen_vagrant --without development
+rvm:
+- 2.2.3
+script:
+- bundle exec rubocop
+- bundle exec foodcritic -f any .

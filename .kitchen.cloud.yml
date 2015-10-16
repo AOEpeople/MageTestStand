@@ -1,0 +1,25 @@
+---
+driver_config:
+  digitalocean_access_token: <%= ENV['DIGITALOCEAN_ACCESS_TOKEN'] %>
+
+provisioner:
+  name: chef_zero
+  data_path: test/shared
+  solo_rb:
+    ssl_verify_mode: verify_peer
+  require_chef_omnibus: latest
+
+platforms:
+- name: debian-7-0-x64
+  driver_plugin: digitalocean
+  driver_config:
+    region: ams3
+    size: 512mb
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
+
+suites:
+- name: default
+  run_list:
+    - recipe[mageteststand::default]
+  attributes: {}
