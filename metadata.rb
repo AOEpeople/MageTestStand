@@ -21,6 +21,8 @@ end
   phpunit
   magerun
   modman
+  java
+  selenium_grid
 ).each do |ressource|
   depends ressource
 end

@@ -11,8 +11,10 @@ include_recipe 'php'
 include_recipe 'php::predis'
 include_recipe 'php::xdebug'
 include_recipe 'phpunit'
-include_recipe 'magerun'
 include_recipe 'modman'
+include_recipe 'magerun'
+include_recipe 'java'
+include_recipe 'selenium_grid::node'
 
 ssh_known_hosts_entry 'github.com'
 
