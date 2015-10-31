@@ -85,6 +85,8 @@ curl -s -L https://phar.phpunit.de/phploc.phar -o ${BUILDENV}/tools/phploc
 chmod +x ${BUILDENV}/tools/phploc
 curl -s -L https://scrutinizer-ci.com/ocular.phar -o ${BUILDENV}/tools/ocular
 chmod +x ${BUILDENV}/tools/ocular
+curl -s -L https://raw.github.com/lehmannro/assert.sh/master/assert.sh -o ${BUILDENV}/tools/assert.sh
+chmod +x ${BUILDENV}/tools/assert.sh
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh

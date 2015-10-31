@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-. assert.sh
+. tools/assert.sh
 
 _clean() {
     _assert_reset # reset state
@@ -34,7 +34,7 @@ echo
 
 echo
 echo -e "${YELLOW}scanning files for malformed XML${NC}"
-CMD='tools/n98-magerun sxmlsv:scan'
+CMD='tools/n98-magerun sxmlsv:scan htdocs/'
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'finding 0 problems'" "1"
 assert_end
@@ -44,7 +44,7 @@ echo
 echo -e "${YELLOW}[APPSEC-1063] testing for possible SQL vulnerabilities${NC}"
 CMD='tools/n98-magerun dev:possible-sql-injection'
 ${CMD}
-_clean STOP=1; assert "${CMD} | grep -co 'APPSEC-1063'" "0"
+_clean STOP=1; assert "${CMD} | grep -co 'not affected by APPSEC-1063'" "1"
 assert_end
 echo
 
@@ -52,14 +52,14 @@ echo
 echo -e "${YELLOW}[SUPEE-6788] testing for old-style admin routing${NC}"
 CMD='tools/n98-magerun dev:old-admin-routing'
 ${CMD}
-_clean STOP=1; assert "${CMD} | grep -co 'Yay! All extension are compatible, good job!'" "0"
+_clean STOP=1; assert "${CMD} | grep -co 'All extension are compatible'" "1"
 assert_end
 echo
 
 echo
 echo -e "${YELLOW}[SUPEE-6788] testing for non-whitelisted template vars${NC}"
-CMD='tools/n98-magerun dev:old-admin-routing'
+CMD='tools/n98-magerun dev:template-vars'
 ${CMD}
-_clean STOP=1; assert "${CMD} | grep -co 'Yay! All blocks and variables are whitelisted.'" "0"
+_clean STOP=1; assert "${CMD} | grep -co 'All blocks and variables are whitelisted'" "1"
 assert_end
 echo
