@@ -66,3 +66,7 @@ fi
 tools/modman deploy-all --force
 
 tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
+
+tools/n98-magerun dev:old-admin-routing
+tools/n98-magerun dev:template-vars
+tools/n98-magerun dev:module:rewrite:conflicts -n
