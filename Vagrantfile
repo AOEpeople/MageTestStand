@@ -15,7 +15,7 @@ $mageteststand = <<SCRIPT
   export MAGENTO_DB_USER="root"
   export MAGENTO_DB_PASS="mageteststand"
   export MAGENTO_DB_NAME="mageteststand"
-  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
+  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash
 SCRIPT
 
 Vagrant.configure('2') do |config|
@@ -74,8 +74,8 @@ Vagrant.configure('2') do |config|
         "php_version" => "5.6"
       },
       "redisio" => {
-        "version" => "3.0.4",
-        "checksum" => "a35e90ad581925134aa0fc92e969cc825f5cdee8e13c36a87d4d6995316112cf",
+        "version" => "3.0.5",
+        "checksum" => "4c176826eee909fbdc63db1c15adc22aab42d758043829e556f4331e6a5bd480",
         "safe_install" => false
       },
       "mysql" => {

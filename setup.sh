@@ -25,7 +25,7 @@ BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
 
 echo "Using build directory ${BUILDENV}"
 
-git clone -b feature/n98-magerun-addons https://github.com/ffuenf/MageTestStand "${BUILDENV}"
+git clone -b testing https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
 mkdir -p ${WORKSPACE}/build/logs
 mkdir -p ${BUILDENV}/tools
@@ -91,6 +91,9 @@ ${BUILDENV}/install.sh
 if [ -d "${WORKSPACE}/vendor" ] ; then
     cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
 fi
+
+cd ${BUILDENV}
+${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
 ${BUILDENV}/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
