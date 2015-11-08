@@ -17,7 +17,7 @@ $mageteststand = <<SCRIPT
   export MAGENTO_DB_NAME="mageteststand"
   export MAGEDOWNLOAD_ID="YOUR-ID"
   export MAGEDOWNLOAD_TOKEN="YOUR-SECRET-TOKEN"
-  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
+  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash
 SCRIPT
 
 Vagrant.configure('2') do |config|

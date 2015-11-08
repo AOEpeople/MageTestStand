@@ -95,19 +95,8 @@ chmod +x ${BUILDENV}/tools/assert.sh
 
 curl -s -L http://magedownload.steverobbins.com/download/latest/magedownload.phar -o ${BUILDENV}/tools/magedownload
 chmod +x ${BUILDENV}/tools/magedownload
-echo "
-user:
-    id: ${MAGEDOWNLOAD_ID}
-    token: ${MAGEDOWNLOAD_TOKEN}
-" > ~/.magedownload-cli.yaml
-if [ -d /home/vagrant ] ; then
-  cp ~/.magedownload-cli.yaml /home/vagrant/.magedownload-cli.yaml
-fi
 
 cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
-if [ -d /home/vagrant ] ; then
-  cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
-fi
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
