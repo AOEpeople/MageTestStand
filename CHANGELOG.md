@@ -4,6 +4,9 @@ This file is used to list changes made in each version of MageTestStand.
 
 ## 2.0.0
 - integrate chef
+- integrate magedownload-cli
+- integrate n98magerun modules
+- add n98magerun module tests
 
 ## 1.0.2
 - properly escape mysql db names

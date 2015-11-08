@@ -41,7 +41,7 @@ General usage
 - Set the environment variable `MAGENTO_VERSION` to the desired version, e.g. magento-ce-1.9.1.0
 - Set the environment variable `WORKSPACE` to the directory of the magento module
 - checkout your magento module
-- run `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
+- run `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash` as the build step, this will do everything automatically in a temporary directory
 - you can use the script contents as a build step for sure, but this way it's easier ;)
 
 Travis CI configuration
@@ -57,27 +57,39 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
   - hhvm
 matrix:
   allow_failures:
   - php: 5.6
+  - php: 7.0
   - php: hhvm
 env:
 #  global:
 #    - MAGENTO_DB_ALLOWSAME=1
 #    - SKIP_CLEANUP=1
-  - MAGENTO_VERSION=magento-ce-1.9.1.0
-  - MAGENTO_VERSION=magento-ce-1.8.1.0
-  - MAGENTO_VERSION=magento-ce-1.7.0.2
-  - MAGENTO_VERSION=magento-ce-1.6.2.0
+  - MAGENTO_VERSION=magento-mirror-1.9.2.2
+  - MAGENTO_VERSION=magento-mirror-1.9.1.1
+  - MAGENTO_VERSION=magento-mirror-1.8.1.0
+  - MAGENTO_VERSION=magento-mirror-1.7.0.2
+  - MAGENTO_VERSION=magento-mirror-1.6.2.0
 script:
-  - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
+  - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash
 notifications:
   email:
     recipients:
       - notify@someone.com
     on_success: always
     on_failure: always
+```
+
+To use the official downloads of magento (which can only accessed for loggedin users),
+you may use [magedoenload-cli](https://github.com/steverobbins/magedownload-cli/).
+For this to work, you'll have to install the travis gem und encrypt your credentials with:
+
+```
+travis encrypt MAGEDOWNLOAD_ID='YOUR-ID' --add
+travis encrypt MAGEDOWNLOAD_TOKEN='YOUR-SECRET-TOKEN' --add
 ```
 
 Jenkins configuration
@@ -87,14 +99,15 @@ Jenkins configuration
 - create a new axis on the configuration matrix, named "MAGENTO_VERSION" and add the following values
 
 ```
-magento-ce-1.9.1.0
-magento-ce-1.8.1.0
-magento-ce-1.7.0.2
-magento-ce-1.6.2.0
+magento-mirror-1.9.2.2
+magento-mirror-1.9.1.1
+magento-mirror-1.8.1.0
+magento-mirror-1.7.0.2
+magento-mirror-1.6.2.0
 ```
 
 - Make sure that the configurations are build sequentiell, otherwise you might run into database issues!
-- use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash`
+- use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash`
 
 Unittest your Module directly from bash/zsh/shell
 -------------------------------------------------
@@ -102,7 +115,7 @@ Unittest your Module directly from bash/zsh/shell
 - Set up your environment
 ```bash
 export WORKSPACE=/full/path/to/your/module
-export MAGENTO_VERSION=magento-ce-1.9.1.0
+export MAGENTO_VERSION=magento-mirror-1.9.2.2
 
 if necessary
 export MAGENTO_DB_HOST=somewhere
@@ -114,7 +127,7 @@ export MAGENTO_DB_NAME=somename
 
 - Run MageTestStand:
 ```
-curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
+curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash
 ```
 
 - Skip cleanup
