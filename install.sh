@@ -52,7 +52,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 
     VERSION=`echo ${MAGENTO_VERSION} | sed -n 's/.*-\(.*\)/\1/p'`
     VER=`echo "${VERSION//./}"`
-    if [ $VER -lt 1900 ] ; then # use magedownload-cli only for magento > 1.9.0.0
+    if [ $VER -gt 1900 ] ; then # use magedownload-cli only for magento > 1.9.0.0
         if [ ! -f /tmp/magento-ce-${VERSION}.tar.gz ] ; then
             tools/magedownload file --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN} magento-${VERSION}.tar.gz /tmp/${MAGENTO_VERSION}.tar.gz
         fi
