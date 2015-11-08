@@ -57,16 +57,19 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
   - hhvm
 matrix:
   allow_failures:
   - php: 5.6
+  - php: 7.0
   - php: hhvm
 env:
 #  global:
 #    - MAGENTO_DB_ALLOWSAME=1
 #    - SKIP_CLEANUP=1
-  - MAGENTO_VERSION=magento-ce-1.9.1.0
+  - MAGENTO_VERSION=magento-ce-1.9.2.2
+  - MAGENTO_VERSION=magento-ce-1.9.1.1
   - MAGENTO_VERSION=magento-ce-1.8.1.0
   - MAGENTO_VERSION=magento-ce-1.7.0.2
   - MAGENTO_VERSION=magento-ce-1.6.2.0
@@ -80,6 +83,15 @@ notifications:
     on_failure: always
 ```
 
+To use the official downloads of magento (which can only accessed for logged-in users as of Magento CE 1.9.0),
+you may use [magedoenload-cli](https://github.com/steverobbins/magedownload-cli/).
+For this to work, you'll have to install the travis gem und encrypt your credentials with:
+
+```
+travis encrypt MAGEDOWNLOAD_ID='YOUR-ID' --add
+travis encrypt MAGEDOWNLOAD_TOKEN='YOUR-SECRET-TOKEN' --add
+```
+
 Jenkins configuration
 ---------------------
 
@@ -87,7 +99,8 @@ Jenkins configuration
 - create a new axis on the configuration matrix, named "MAGENTO_VERSION" and add the following values
 
 ```
-magento-ce-1.9.1.0
+magento-ce-1.9.2.2
+magento-ce-1.9.1.1
 magento-ce-1.8.1.0
 magento-ce-1.7.0.2
 magento-ce-1.6.2.0
@@ -102,7 +115,7 @@ Unittest your Module directly from bash/zsh/shell
 - Set up your environment
 ```bash
 export WORKSPACE=/full/path/to/your/module
-export MAGENTO_VERSION=magento-ce-1.9.1.0
+export MAGENTO_VERSION=magento-ce-1.9.2.2
 
 if necessary
 export MAGENTO_DB_HOST=somewhere

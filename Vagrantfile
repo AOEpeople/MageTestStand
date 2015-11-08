@@ -9,13 +9,15 @@ SCRIPT
 $mageteststand = <<SCRIPT
   export SKIP_CLEANUP=true
   export WORKSPACE="/vagrant"
-  export MAGENTO_VERSION="magento-mirror-1.9.2.1"
+  export MAGENTO_VERSION="magento-ce-1.9.2.2"
   export MAGENTO_DB_HOST="127.0.0.1"
   export MAGENTO_DB_PORT="3306"
   export MAGENTO_DB_USER="root"
   export MAGENTO_DB_PASS="mageteststand"
   export MAGENTO_DB_NAME="mageteststand"
-  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash
+  export MAGEDOWNLOAD_ID="YOUR-ID"
+  export MAGEDOWNLOAD_TOKEN="YOUR-SECRET-TOKEN"
+  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 SCRIPT
 
 Vagrant.configure('2') do |config|
@@ -57,7 +59,7 @@ Vagrant.configure('2') do |config|
   config.vm.provision 'shell', inline: $setup
 
   # chef
-  config.vm.provision 'chef_zero' do |chef|
+  config.vm.provision 'chef_solo' do |chef|
     chef.provisioning_path = '/tmp/vagrant-chef-solo'
     chef.file_cache_path = chef.provisioning_path
     chef.cookbooks_path = ['.']
