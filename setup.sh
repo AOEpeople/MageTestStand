@@ -7,7 +7,7 @@ function cleanup {
     echo "Removing build directory ${BUILDENV}"
     rm -rf "${BUILDENV}"
     rm -rf ${WORKSPACE}/build
-    rm -f magento-ce-${MAGENTO_VERSION}.tar.gz
+    rm -f ${MAGENTO_VERSION}.tar.gz
   fi
 }
 
@@ -35,54 +35,54 @@ curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modma
 chmod +x ${BUILDENV}/tools/modman
 curl -s -L http://files.magerun.net/n98-magerun-latest.phar -o ${BUILDENV}/tools/n98-magerun
 chmod +x ${BUILDENV}/tools/n98-magerun
-mkdir -p /tmp/n98-magerun-modules/
-if [ ! -d /tmp/n98-magerun-modules/yireo ] ; then
-  git clone https://github.com/yireo/magerun-addons /tmp/n98-magerun-modules/yireo
+mkdir -p ~/n98-magerun/modules/
+if [ ! -d ~/n98-magerun/modules/yireo ] ; then
+  git clone https://github.com/yireo/magerun-addons ~/n98-magerun/modules/yireo
 fi
-if [ ! -d /tmp/n98-magerun-modules/mpmd ] ; then
-  git clone https://github.com/aoepeople/mpmd /tmp/n98-magerun-modules/mpmd
+if [ ! -d ~/n98-magerun/modules/mpmd ] ; then
+  git clone https://github.com/aoepeople/mpmd ~/n98-magerun/modules/mpmd
 fi
-if [ ! -d /tmp/n98-magerun-modules/magerun-commands ] ; then
-  git clone https://github.com/degdigital/magerun-commands /tmp/n98-magerun-modules/magerun-commands
+if [ ! -d ~/n98-magerun/modules/magerun-commands ] ; then
+  git clone https://github.com/degdigital/magerun-commands ~/n98-magerun/modules/magerun-commands
 fi
-if [ ! -d /tmp/n98-magerun-modules/magerun-addons ] ; then
-  git clone https://github.com/peterjaap/magerun-addons /tmp/n98-magerun-modules/magerun-addons
+if [ ! -d ~/n98-magerun/modules/magerun-addons ] ; then
+  git clone https://github.com/peterjaap/magerun-addons ~/n98-magerun/modules/magerun-addons
 fi
-if [ ! -d /tmp/n98-magerun-modules/magerun-creatuity ] ; then
-  git clone https://github.com/creatuity/magerun-creatuity /tmp/n98-magerun-modules/magerun-creatuity
+if [ ! -d ~/n98-magerun/modules/magerun-creatuity ] ; then
+  git clone https://github.com/creatuity/magerun-creatuity ~/n98-magerun/modules/magerun-creatuity
 fi
-if [ ! -d /tmp/n98-magerun-modules/magerun-module-cache-benchmark ] ; then
-  git clone https://github.com/cmuench/magerun-module-cache-benchmark /tmp/n98-magerun-modules/magerun-module-cache-benchmark
+if [ ! -d ~/n98-magerun/modules/magerun-module-cache-benchmark ] ; then
+  git clone https://github.com/cmuench/magerun-module-cache-benchmark ~/n98-magerun/modules/magerun-module-cache-benchmark
 fi
-if [ ! -d /tmp/n98-magerun-modules/cmuench-magerun-addons ] ; then
-  git clone https://github.com/cmuench/cmuench-magerun-addons /tmp/n98-magerun-modules/cmuench-magerun-addons
+if [ ! -d ~/n98-magerun/modules/cmuench-magerun-addons ] ; then
+  git clone https://github.com/cmuench/cmuench-magerun-addons ~/n98-magerun/modules/cmuench-magerun-addons
 fi
-if [ ! -d /tmp/n98-magerun-modules/kalenjordan-magerun-addons ] ; then
-  git clone https://github.com/kalenjordan/magerun-addons /tmp/n98-magerun-modules/kalenjordan-magerun-addons
+if [ ! -d ~/n98-magerun/modules/kalenjordan-magerun-addons ] ; then
+  git clone https://github.com/kalenjordan/magerun-addons ~/n98-magerun/modules/kalenjordan-magerun-addons
 fi
-if [ ! -d /tmp/n98-magerun-modules/Webgriffe_Golive ] ; then
-  git clone https://github.com/aleron75/Webgriffe_Golive /tmp/n98-magerun-modules/Webgriffe_Golive
+if [ ! -d ~/n98-magerun/modules/Webgriffe_Golive ] ; then
+  git clone https://github.com/aleron75/Webgriffe_Golive ~/n98-magerun/modules/Webgriffe_Golive
 fi
-if [ ! -d /tmp/n98-magerun-modules/ffuenf-download-remote-media ] ; then
-  git clone https://github.com/ffuenf/download-remote-media /tmp/n98-magerun-modules/ffuenf-download-remote-media
+if [ ! -d ~/n98-magerun/modules/ffuenf-download-remote-media ] ; then
+  git clone https://github.com/ffuenf/download-remote-media ~/n98-magerun/modules/ffuenf-download-remote-media
 fi
-if [ ! -d /tmp/n98-magerun-modules/sxmlsv ] ; then
-  git clone https://github.com/KamilBalwierz/sxmlsv /tmp/n98-magerun-modules/sxmlsv
+if [ ! -d ~/n98-magerun/modules/sxmlsv ] ; then
+  git clone https://github.com/KamilBalwierz/sxmlsv ~/n98-magerun/modules/sxmlsv
 fi
-if [ ! -d /tmp/n98-magerun-modules/magerun-dataprofile ] ; then
-  git clone https://github.com/marcoandreini/magerun-dataprofile /tmp/n98-magerun-modules/magerun-dataprofile
+if [ ! -d ~/n98-magerun/modules/magerun-dataprofile ] ; then
+  git clone https://github.com/marcoandreini/magerun-dataprofile ~/n98-magerun/modules/magerun-dataprofile
 fi
-if [ ! -d /tmp/n98-magerun-modules/Magerun-DBClean ] ; then
-  git clone https://github.com/steverobbins/Magerun-DBClean /tmp/n98-magerun-modules/Magerun-DBClean
+if [ ! -d ~/n98-magerun/modules/Magerun-DBClean ] ; then
+  git clone https://github.com/steverobbins/Magerun-DBClean ~/n98-magerun/modules/Magerun-DBClean
 fi
-if [ ! -d /tmp/n98-magerun-modules/magerun-modman ] ; then
-  git clone https://github.com/fruitcakestudio/magerun-modman /tmp/n98-magerun-modules/magerun-modman
+if [ ! -d ~/n98-magerun/modules/magerun-modman ] ; then
+  git clone https://github.com/fruitcakestudio/magerun-modman ~/n98-magerun/modules/magerun-modman
 fi
-if [ ! -d /tmp/n98-magerun-modules/EAVCleaner ] ; then
-  git clone https://github.com/magento-hackathon/EAVCleaner /tmp/n98-magerun-modules/EAVCleaner
+if [ ! -d ~/n98-magerun/modules/EAVCleaner ] ; then
+  git clone https://github.com/magento-hackathon/EAVCleaner ~/n98-magerun/modules/EAVCleaner
 fi
-if [ ! -d /tmp/n98-magerun-modules/magescan ] ; then
-  git clone https://github.com/steverobbins/magescan /tmp/n98-magerun-modules/magescan
+if [ ! -d ~/n98-magerun/modules/magescan ] ; then
+  git clone https://github.com/steverobbins/magescan ~/n98-magerun/modules/magescan
 fi
 curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
 chmod +x ${BUILDENV}/tools/composer
