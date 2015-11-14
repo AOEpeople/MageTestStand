@@ -2,7 +2,7 @@
   "minimum-stability": "dev",
   "require": {
     "aoepeople/composer-installers": "*",
-    "ecomdev/ecomdev_phpunit": "dev-dev",
+    "arosenhagen/ecomdev_phpunit": "dev",
     "codeclimate/php-test-reporter": "dev-master"
   },
   "config": {
@@ -12,6 +12,10 @@
     {
       "type": "composer",
       "url": "http://packages.firegento.com"
+    },
+    {
+      "type": "vcs",
+      "url": "http://github.com/arosenhagen/ecomdev_phpunit"
     }
   ]
 }
