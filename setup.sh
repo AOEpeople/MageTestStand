@@ -103,6 +103,15 @@ if [ -d "${WORKSPACE}/vendor" ] ; then
     cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
 fi
 
+if [ -f ${BUILDENV}/.modman${WORKSPACE}/composer.json ] ; then
+    cp -f "${BUILDENV}/.modman${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
+    cd ${BUILDENV}/htdocs
+    if [ ! -f composer.lock ] ; then
+        ${BUILDENV}/tools/composer install
+        ${BUILDENV}/tools/modman deploy-all --force
+    fi
+fi
+
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
