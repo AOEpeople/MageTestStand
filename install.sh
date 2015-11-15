@@ -71,6 +71,15 @@ if [ ! -f composer.lock ] ; then
     tools/composer install
 fi
 
+if [ -f ${BUILDENV}/.modman${WORKSPACE}/composer.json ] ; then
+    cp -f "${BUILDENV}/.modman${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
+    cd ${SOURCE_DIR}/htdocs
+    if [ ! -f composer.lock ] ; then
+        ${BUILDENV}/tools/composer install
+    fi
+    cd ${SOURCE_DIR}
+fi
+
 tools/modman deploy-all --force
 
 tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
