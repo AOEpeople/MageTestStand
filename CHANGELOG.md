@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.1.0
+- allow extension dependencies via composer
+- revert additional services (use minimal setup)
+
 ## 2.0.0
 - integrate chef
 - integrate magedownload-cli

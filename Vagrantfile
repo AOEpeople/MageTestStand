@@ -17,8 +17,10 @@ $mageteststand = <<SCRIPT
   export MAGENTO_DB_NAME="mageteststand"
   export MAGEDOWNLOAD_ID="YOUR-ID"
   export MAGEDOWNLOAD_TOKEN="YOUR-SECRET-TOKEN"
-  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/testing/setup.sh | bash
+  curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
 SCRIPT
+
+$provision = false
 
 Vagrant.configure('2') do |config|
   # vagrant-omnibus
@@ -45,6 +47,8 @@ Vagrant.configure('2') do |config|
 
   # basebox
   config.vm.box = 'ffuenf/debian-7.9.0-amd64'
+  # config.vm.box = 'mageteststand'
+  # config.vm.box_url = '../mageteststand.box'
 
   # virtualbox options
   config.vm.provider 'virtualbox' do |v|
@@ -59,34 +63,31 @@ Vagrant.configure('2') do |config|
   config.vm.provision 'shell', inline: $setup
 
   # chef
-  config.vm.provision 'chef_solo' do |chef|
-    chef.provisioning_path = '/tmp/vagrant-chef-solo'
-    chef.file_cache_path = chef.provisioning_path
-    chef.cookbooks_path = ['.']
-    chef.add_recipe 'mageteststand'
-    chef.json = {
-      "php" => {
-        "xdebug" => {
-          "cli" => {
-            "enabled" => "true"
+  if $provision then
+    config.vm.provision 'chef_solo' do |chef|
+      chef.provisioning_path = '/tmp/vagrant-chef-solo'
+      chef.file_cache_path = chef.provisioning_path
+      chef.cookbooks_path = ['.']
+      chef.add_recipe 'mageteststand'
+      chef.json = {
+        "php" => {
+          "xdebug" => {
+            "cli" => {
+              "enabled" => "true"
+            }
           }
+        },
+        "dotdeb" => {
+          "php_version" => "5.6"
+        },
+        "mysql" => {
+          "version" => "5.6",
+          "bind_address" => "127.0.0.1",
+          "port" => "3306",
+          "server_root_password" => "mageteststand"
         }
-      },
-      "dotdeb" => {
-        "php_version" => "5.6"
-      },
-      "redisio" => {
-        "version" => "3.0.5",
-        "checksum" => "4c176826eee909fbdc63db1c15adc22aab42d758043829e556f4331e6a5bd480",
-        "safe_install" => false
-      },
-      "mysql" => {
-        "version" => "5.6",
-        "bind_address" => "127.0.0.1",
-        "port" => "3306",
-        "server_root_password" => "mageteststand"
       }
-    }
+    end
   end
   config.vm.provision 'shell', inline: $mageteststand
 end

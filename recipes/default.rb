@@ -5,16 +5,16 @@
 
 include_recipe 'chef-sugar'
 include_recipe 'dotdeb' if debian?
-include_recipe 'redisio'
-include_recipe 'redisio::enable'
+#include_recipe 'redisio'
+#include_recipe 'redisio::enable'
 include_recipe 'php'
-include_recipe 'php::predis'
+#include_recipe 'php::predis'
 include_recipe 'php::xdebug'
-include_recipe 'phpunit'
-include_recipe 'modman'
-include_recipe 'magerun'
-include_recipe 'java'
-include_recipe 'selenium_grid::node'
+#include_recipe 'phpunit'
+#include_recipe 'modman'
+#include_recipe 'magerun'
+#include_recipe 'java'
+#include_recipe 'selenium_grid::node'
 
 ssh_known_hosts_entry 'github.com'
 
