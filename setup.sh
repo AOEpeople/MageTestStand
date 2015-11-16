@@ -108,9 +108,10 @@ if [ -f ${WORKSPACE}/composer.json ] ; then
     cd ${BUILDENV}/htdocs
     if [ ! -f composer.lock ] ; then
         ${BUILDENV}/tools/composer install
-        ${BUILDENV}/tools/modman deploy-all --force
     fi
 fi
+${BUILDENV}/tools/modman deploy-all --force
+${BUILDENV}/tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
