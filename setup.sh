@@ -99,18 +99,17 @@ cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
-if [ -f ${WORKSPACE}/composer.json ] ; then
-    cp -f "${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
+if [ -d "${WORKSPACE}/vendor" ] ; then
+    cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+fi
+
+if [ -f ${BUILDENV}/.modman${WORKSPACE}/composer.json ] ; then
+    cp -f "${BUILDENV}/.modman${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
     cd ${BUILDENV}/htdocs
     if [ ! -f composer.lock ] ; then
         ${BUILDENV}/tools/composer install
+        ${BUILDENV}/tools/modman deploy-all --force
     fi
-fi
-${BUILDENV}/tools/modman deploy-all --force
-${BUILDENV}/tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
-
-if [ -d "${WORKSPACE}/vendor" ] ; then
-    cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
 fi
 
 cd ${BUILDENV}

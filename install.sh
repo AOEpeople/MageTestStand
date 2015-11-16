@@ -70,3 +70,7 @@ fi
 if [ ! -f composer.lock ] ; then
     tools/composer install
 fi
+
+tools/modman deploy-all --force
+
+tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
