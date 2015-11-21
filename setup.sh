@@ -93,9 +93,9 @@ fi
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}
 if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
-  php -f ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover build/logs/clover.xml
+  php -f ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${WORKSPACE}/build/logs/clover.xml
 else
-  php -f ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
+  php -f ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover ${WORKSPACE}/build/logs/clover.xml
 fi
 
 echo "Done."
