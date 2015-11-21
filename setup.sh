@@ -98,4 +98,23 @@ else
   php -f ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover ${WORKSPACE}/build/logs/clover.xml
 fi
 
+if [ "$TRAVIS_TAG" != "" ]; then
+  RELEASEDIR=`mktemp -d /tmp/${APPNAME}-release-${TRAVIS_TAG}.XXXXXXXX`
+  echo "Using release directory ${RELEASEDIR}"
+  cd $WORKSPACE
+  rsync -av \
+    --exclude='.travis/' \
+    --exclude='.scrutinizer.yml' \
+    --exclude='.travis.yml' \
+    --exclude='.codeclimate.yml' \
+    --exclude='.git/' \
+    --exclude='.gitignore' \
+    --exclude='Berksfile' \
+    --exclude='Vagrantfile' \
+    . ${RELEASEDIR}/
+  zip -r ${APPNAME}-${TRAVIS_TAG}.zip ${RELEASEDIR}
+  tar -czf ${APPNAME}-${TRAVIS_TAG}.tar.gz ${RELEASEDIR}
+  echo "Bundled release ${TRAVIS_TAG}"
+fi
+
 echo "Done."
