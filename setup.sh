@@ -107,7 +107,7 @@ if [ -f ${WORKSPACE}/composer.json ] ; then
     cp -f "${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
     cd ${BUILDENV}/htdocs
     if [ ! -f composer.lock ] ; then
-        ${BUILDENV}/tools/composer install
+        ${BUILDENV}/tools/composer install --prefer-source
         ${BUILDENV}/tools/modman deploy-all --force
     fi
 fi

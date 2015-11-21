@@ -12,9 +12,9 @@ if [ -z $MAGENTO_DB_NAME ]; then MAGENTO_DB_NAME="mageteststand"; fi
 if [ -z $MAGENTO_DB_ALLOWSAME ]; then MAGENTO_DB_ALLOWSAME="0"; fi
 
 echo
-echo "---------------------"
+echo "------------------------"
 echo "- Ffuenf MageTestStand -"
-echo "---------------------"
+echo "------------------------"
 echo
 echo "Installing ${MAGENTO_VERSION} in ${SOURCE_DIR}/htdocs"
 echo "using Database Credentials:"
@@ -68,7 +68,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 fi
 
 if [ ! -f composer.lock ] ; then
-    tools/composer install
+    tools/composer install --prefer-source
 fi
 
 tools/modman deploy-all --force
