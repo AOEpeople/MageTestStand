@@ -27,12 +27,14 @@ commands:
         dist:
           url: /tmp/magento-ce-1.9.1.1.tar.gz
           type: tar
+          shasum: 170e4b9019f43477d2f2a074ef551a05009da724
 
       - name: magento-ce-1.9.1.0
         version: 1.9.1.0
         dist:
           url: /tmp/magento-ce-1.9.1.0.tar.gz
           type: tar
+          shasum: 4f7064f4a5bc46298979e8b37208be6fdaf20002
 
       - name: magento-ce-1.9.0.1
         version: 1.9.0.1
