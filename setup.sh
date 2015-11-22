@@ -99,7 +99,7 @@ else
 fi
 
 if [ "$TRAVIS_TAG" != "" ]; then
-  RELEASEDIR=`mktemp -d /tmp/${APPNAME}-${TRAVIS_TAG}.XXXXXXXX/`
+  RELEASEDIR=`mktemp -d /tmp/${APPNAME}-${TRAVIS_TAG}.XXXXXXXX`
   echo "Using release directory ${RELEASEDIR}"
   cd $WORKSPACE
   rsync -av \
