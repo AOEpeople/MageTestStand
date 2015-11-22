@@ -115,7 +115,10 @@ if [ "$TRAVIS_TAG" != "" ]; then
     . ${RELEASEDIR}/${APPNAME}/
   cd ${RELEASEDIR}/
   zip -r ${APPNAME}-${TRAVIS_TAG}.zip ${APPNAME}
+  mv ${APPNAME}-${TRAVIS_TAG}.zip $WORKSPACE
   tar -czf ${APPNAME}-${TRAVIS_TAG}.tar.gz ${APPNAME}
+  mv ${APPNAME}-${TRAVIS_TAG}.tar.gz $WORKSPACE
+  rm -rf ${RELEASEDIR}
   echo "Bundled release ${TRAVIS_TAG}"
 fi
 
