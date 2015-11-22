@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.1.1 (Unreleased)
+
 ## 2.1.0
 - allow extension dependencies via composer
 - revert additional services (use minimal setup)
