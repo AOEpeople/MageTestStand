@@ -99,10 +99,11 @@ else
 fi
 
 if [ "$TRAVIS_TAG" != "" ]; then
-  RELEASEDIR=`mktemp -d /tmp/${APPNAME}-release-${TRAVIS_TAG}.XXXXXXXX`
+  RELEASEDIR=`mktemp -d /tmp/${APPNAME}-${TRAVIS_TAG}.XXXXXXXX/`
   echo "Using release directory ${RELEASEDIR}"
   cd $WORKSPACE
   rsync -av \
+    --exclude='build/' \
     --exclude='.travis/' \
     --exclude='.scrutinizer.yml' \
     --exclude='.travis.yml' \
@@ -111,9 +112,10 @@ if [ "$TRAVIS_TAG" != "" ]; then
     --exclude='.gitignore' \
     --exclude='Berksfile' \
     --exclude='Vagrantfile' \
-    . ${RELEASEDIR}/
-  zip -r ${APPNAME}-${TRAVIS_TAG}.zip ${RELEASEDIR}
-  tar -czf ${APPNAME}-${TRAVIS_TAG}.tar.gz ${RELEASEDIR}
+    . ${RELEASEDIR}/${APPNAME}/
+  cd ${RELEASEDIR}/
+  zip -r ${APPNAME}-${TRAVIS_TAG}.zip ${APPNAME}
+  tar -czf ${APPNAME}-${TRAVIS_TAG}.tar.gz ${APPNAME}
   echo "Bundled release ${TRAVIS_TAG}"
 fi
 
