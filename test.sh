@@ -33,8 +33,8 @@ assert_end
 echo
 
 echo
-echo -e "${YELLOW}scanning files for malformed XML${NC}"
-CMD='tools/n98-magerun sxmlsv:scan htdocs/'
+echo -e "${YELLOW}scanning files in htdocs/app/ for malformed XML${NC}"
+CMD='tools/n98-magerun sxmlsv:scan htdocs/app/'
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'finding 0 problems'" "1"
 assert_end
