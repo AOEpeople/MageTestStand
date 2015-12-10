@@ -2,7 +2,10 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
-## 2.1.1 (Unreleased)
+## 2.1.2 (Unreleased)
+
+## 2.1.1 (December 10, 2015)
+- allow extension dependencies via composer
 
 ## 2.1.0
 - allow extension dependencies via composer
