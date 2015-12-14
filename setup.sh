@@ -44,6 +44,10 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
   chmod +x ${BUILDENV}/tools/composer
 fi
+if [ ! -f ${BUILDENV}/tools/phpcs ] ; then
+  curl -s -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o ${BUILDENV}/tools/phpcs
+  chmod +x ${BUILDENV}/tools/phpcs
+fi
 if [ ! -f ${BUILDENV}/tools/phploc ] ; then
   curl -s -L https://phar.phpunit.de/phploc.phar -o ${BUILDENV}/tools/phploc
   chmod +x ${BUILDENV}/tools/phploc
@@ -78,6 +82,7 @@ cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
+php ${BUILDENV}/tools/phpcs --standard=${WORKSPACE}/phpcs.xml --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}
 ${BUILDENV}/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
