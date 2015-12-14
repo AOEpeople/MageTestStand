@@ -67,19 +67,10 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
       --baseUrl="http://magento.local/" || { echo "Installing Magento failed"; exit 1; }
 fi
 
-cd ${SOURCE_DIR}/htdocs
-if [ -f ${SOURCE_DIR}/.modman/${APPNAME}/composer.json ] ; then
-  rm -f ${SOURCE_DIR}/htdocs/composer.lock
-  cp -rf ${SOURCE_DIR}/.modman/${APPNAME}/composer.json htdocs/composer.json
-  ../tools/composer install --prefer-source
-  rm -f composer.lock
-  ../tools/modman deploy-all --force
-fi
-
 if [ ! -f composer.lock ] ; then
-  cp -rf ${SOURCE_DIR}/composer.json ${SOURCE_DIR}/htdocs/composer.json
-  ../tools/composer install --prefer-source
+    tools/composer install --prefer-source
 fi
 
-../tools/modman deploy-all --force
-cd ${SOURCE_DIR}
+tools/modman deploy-all --force
+
+tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
