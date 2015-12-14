@@ -64,19 +64,15 @@ fi
 cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
-${BUILDENV}/install.sh
+# if module came with own dependencies that were installed, use these:
 if [ -d "${WORKSPACE}/vendor" ] ; then
-    cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+  cp -f ${WORKSPACE}/composer.lock "${BUILDENV}/"
+  cp -rf ${WORKSPACE}/vendor "${BUILDENV}/"
 fi
-
-if [ -f ${WORKSPACE}/composer.json ] ; then
-    cp -f "${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
-    cd ${BUILDENV}/htdocs
-    if [ ! -f composer.lock ] ; then
-        ${BUILDENV}/tools/composer install --prefer-source
-        ${BUILDENV}/tools/modman deploy-all --force
-    fi
+if [ -d "${WORKSPACE}/.modman" ] ; then
+  cp -rf ${WORKSPACE}/.modman/* "${BUILDENV}/.modman/"
 fi
+${BUILDENV}/install.sh
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
