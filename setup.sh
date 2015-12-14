@@ -44,6 +44,10 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
   chmod +x ${BUILDENV}/tools/composer
 fi
+if [ ! -f ${BUILDENV}/tools/phpcs ] ; then
+  curl -s -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o ${BUILDENV}/tools/phpcs
+  chmod +x ${BUILDENV}/tools/phpcs
+fi
 if [ ! -f ${BUILDENV}/tools/phploc ] ; then
   curl -s -L https://phar.phpunit.de/phploc.phar -o ${BUILDENV}/tools/phploc
   chmod +x ${BUILDENV}/tools/phploc
@@ -64,24 +68,21 @@ fi
 cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
-${BUILDENV}/install.sh
+# if module came with own dependencies that were installed, use these:
 if [ -d "${WORKSPACE}/vendor" ] ; then
-    cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+  cp -f ${WORKSPACE}/composer.lock "${BUILDENV}/"
+  cp -rf ${WORKSPACE}/vendor "${BUILDENV}/"
 fi
-
-if [ -f ${WORKSPACE}/composer.json ] ; then
-    cp -f "${WORKSPACE}/composer.json" "${BUILDENV}/htdocs/composer.json"
-    cd ${BUILDENV}/htdocs
-    if [ ! -f composer.lock ] ; then
-        ${BUILDENV}/tools/composer install --prefer-source
-        ${BUILDENV}/tools/modman deploy-all --force
-    fi
+if [ -d "${WORKSPACE}/.modman" ] ; then
+  cp -rf ${WORKSPACE}/.modman/* "${BUILDENV}/.modman/"
 fi
+${BUILDENV}/install.sh
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
+php ${BUILDENV}/tools/phpcs --standard=${WORKSPACE}/phpcs.xml --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}
 ${BUILDENV}/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
