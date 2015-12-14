@@ -27,11 +27,6 @@
             <redirect_to_base>0</redirect_to_base>
          </url>
       </web>
-      <dev>
-          <template>
-              <allow_symlink>1</allow_symlink>
-          </template>
-      </dev>
    </default>
    <phpunit>
       <allow_same_db>MAGENTO_DB_ALLOWSAME</allow_same_db>
