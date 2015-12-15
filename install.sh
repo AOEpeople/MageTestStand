@@ -68,6 +68,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 fi
 
 if [ ! -f composer.lock ] ; then
+    echo "ffuenf: run composer"
     tools/composer install --prefer-source
 fi
 
