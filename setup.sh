@@ -82,7 +82,7 @@ cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
-php ${BUILDENV}/tools/phpcs --standard=./phpcs.xml --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}
+php ${BUILDENV}/tools/phpcs --standard=./phpcs.xml --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}/app/code
 ${BUILDENV}/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
