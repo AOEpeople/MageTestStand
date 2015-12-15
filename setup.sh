@@ -77,6 +77,9 @@ if [ -d "${WORKSPACE}/.modman" ] ; then
   cp -rf ${WORKSPACE}/.modman/* "${BUILDENV}/.modman/"
 fi
 ${BUILDENV}/install.sh
+if [ -d "${WORKSPACE}/vendor" ] ; then
+  cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
+fi
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
