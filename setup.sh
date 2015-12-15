@@ -70,7 +70,7 @@ cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 # if module came with own dependencies that were installed, use these:
 if [ -d "${WORKSPACE}/vendor" ] ; then
-  cp -rf ${WORKSPACE}/vendor "${BUILDENV}/"
+  cp -rf ${WORKSPACE}/vendor "${BUILDENV}/ext_vendor"
 fi
 if [ -d "${WORKSPACE}/.modman" ] ; then
   cp -rf ${WORKSPACE}/.modman/* "${BUILDENV}/.modman/"
