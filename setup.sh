@@ -71,22 +71,19 @@ cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 # if module came with own dependencies that were installed, use these:
 if [ -d "${WORKSPACE}/vendor" ] ; then
   cp -f ${WORKSPACE}/composer.lock "${BUILDENV}/"
-  cp -rf ${WORKSPACE}/vendor "${BUILDENV}/"
+  cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
 fi
 if [ -d "${WORKSPACE}/.modman" ] ; then
   cp -rf ${WORKSPACE}/.modman/* "${BUILDENV}/.modman/"
 fi
 ${BUILDENV}/install.sh
-if [ -d "${WORKSPACE}/vendor" ] ; then
-  cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
-fi
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
 php ${BUILDENV}/tools/phpcs --standard=./phpcs.xml --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}/app/code
-${BUILDENV}/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
+phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
   echo "Exporting code coverage results to codeclimate"
