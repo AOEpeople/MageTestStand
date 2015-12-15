@@ -87,12 +87,6 @@ cd ${BUILDENV}/htdocs
 php ${BUILDENV}/tools/phpcs --standard=./phpcs.xml --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}/app/code
 phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
-if [ ! -z $CODECLIMATE_REPO_TOKEN ] ; then
-  echo "Exporting code coverage results to codeclimate"
-  cd ${WORKSPACE}
-  ${BUILDENV}/vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
-fi
-
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}
 if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
