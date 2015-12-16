@@ -1,4 +1,3 @@
 app/etc/local.xml.phpunit app/etc/local.xml.phpunit
 lib/ffuenf_testsetup/ lib/ffuenf_testsetup/
-@shell cp $MODULE/phpcs.xml $PROJECT/phpcs.xml; echo "Copied phpcs.xml";
 @shell if [ ! -f $PROJECT/phpunit.xml.dist.PROTECT ] ; then cp $MODULE/phpunit.xml.dist.template $PROJECT/phpunit.xml.dist; echo `date +%s` > $PROJECT/phpunit.xml.dist.PROTECT;  echo "Copied phpunit.xml.dist"; fi
