@@ -4,12 +4,9 @@ MageTestStand
 =============
 [![GitHub tag](https://img.shields.io/github/tag/ffuenf/MageTestStand.svg)][tag]
 [![Build Status](https://img.shields.io/travis/ffuenf/MageTestStand.svg)][travis]
-[![Code Climate](https://codeclimate.com/github/ffuenf/MageTestStand/badges/gpa.svg)][codeclimate_gpa]
 [![PayPal Donate](https://img.shields.io/badge/paypal-donate-blue.svg)][paypal_donate]
-
 [tag]: https://github.com/ffuenf/MageTestStand
 [travis]: https://travis-ci.org/ffuenf/MageTestStand
-[codeclimate_gpa]: https://codeclimate.com/github/ffuenf/MageTestStand
 [paypal_donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J2PQS2WLT2Y8W&item_name=Magento%20Extension%3a%20MageTestStand&item_number=MageTestStand&currency_code=EUR
 
 This tool is used to build a minimal Magento environment that allows to run PHPUnit tests for a Magento module on Travis CI.
@@ -19,6 +16,7 @@ It uses following tools:
 - [modman](https://github.com/colinmollenhour/modman) (to link your module to the Magento instance)
 - [EcomDev_PHPUnit](https://github.com/ecomdev/EcomDev_PHPUnit)
 - [PHPUnit](https://phpunit.de/)
+- [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) with [ECG Magento Code Sniffer Coding Standard](https://github.com/magento-ecg/coding-standard)
 - [Composer](https://getcomposer.org/)
 - [aoepeople/composer-installers](https://github.com/AOEpeople/composer-installers) (minimal composer installer for Magento modules which acts as a replacement for '[magento-hackathon/magento-composer-installer](https://github.com/magento-hackathon/magento-composer-installer)')
 
@@ -55,90 +53,64 @@ Example .travis.yaml file (in the Magento module you want to test):
 language: php
 sudo: false
 php:
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- 7.0
 matrix:
+  fast_finish: true
   allow_failures:
+  - env: MAGENTO_VERSION=magento-ce-1.9.1.1
+  - env: MAGENTO_VERSION=magento-ce-1.9.1.0
+  - php: 5.3
+  - php: 5.4
+    env: MAGENTO_VERSION=magento-ce-1.9.2.2
+  - php: 5.4
+    env: MAGENTO_VERSION=magento-ce-1.9.2.1
+  - php: 5.4
+    env: MAGENTO_VERSION=magento-ce-1.9.2.0
   - php: 5.6
+    env: MAGENTO_VERSION=magento-mirror-1.8.1.0
   - php: 7.0
-  - php: hhvm
+    env: MAGENTO_VERSION=magento-mirror-1.8.1.0
 env:
-#  global:
-#    - MAGENTO_DB_ALLOWSAME=1
-#    - SKIP_CLEANUP=1
+  global:
+  - APPNAME=NAMESPACE_EXTENSIONNAME
+  matrix:
   - MAGENTO_VERSION=magento-ce-1.9.2.2
+  - MAGENTO_VERSION=magento-ce-1.9.2.1
+  - MAGENTO_VERSION=magento-ce-1.9.2.0
   - MAGENTO_VERSION=magento-ce-1.9.1.1
-  - MAGENTO_VERSION=magento-ce-1.8.1.0
-  - MAGENTO_VERSION=magento-ce-1.7.0.2
-  - MAGENTO_VERSION=magento-ce-1.6.2.0
+  - MAGENTO_VERSION=magento-ce-1.9.1.0
+  - MAGENTO_VERSION=magento-mirror-1.8.1.0
+  - MAGENTO_VERSION=magento-mirror-1.7.0.2
+  - MAGENTO_VERSION=magento-mirror-1.6.2.0
+before_script:
+- composer self-update
+- composer install --prefer-source
 script:
-  - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
-notifications:
-  email:
-    recipients:
-      - notify@someone.com
-    on_success: always
-    on_failure: always
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
+before_deploy:
+- gem install mime-types -v 2.6.2
+deploy:
+  provider: releases
+  file:
+  - "${APPNAME}-${TRAVIS_TAG}.zip"
+  - "${APPNAME}-${TRAVIS_TAG}.tar.gz"
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
 ```
 
 To use the official downloads of magento (which can only accessed for logged-in users as of Magento CE 1.9.0),
-you may use [magedoenload-cli](https://github.com/steverobbins/magedownload-cli/).
+you may use [magedownload-cli](https://github.com/steverobbins/magedownload-cli/).
 For this to work, you'll have to install the travis gem und encrypt your credentials with:
 
 ```
 travis encrypt MAGEDOWNLOAD_ID='YOUR-ID' --add
 travis encrypt MAGEDOWNLOAD_TOKEN='YOUR-SECRET-TOKEN' --add
-```
-
-Jenkins configuration
----------------------
-
-- create a new multiconfiguration project and check out your Magento Module.
-- create a new axis on the configuration matrix, named "MAGENTO_VERSION" and add the following values
-
-```
-magento-ce-1.9.2.2
-magento-ce-1.9.1.1
-magento-ce-1.8.1.0
-magento-ce-1.7.0.2
-magento-ce-1.6.2.0
-```
-
-- Make sure that the configurations are build sequentiell, otherwise you might run into database issues!
-- use the following script as a shell build step `curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash`
-
-Unittest your Module directly from bash/zsh/shell
--------------------------------------------------
-
-- Set up your environment
-```bash
-export WORKSPACE=/full/path/to/your/module
-export MAGENTO_VERSION=magento-ce-1.9.2.2
-
-if necessary
-export MAGENTO_DB_HOST=somewhere
-export MAGENTO_DB_PORT=somenum
-export MAGENTO_DB_USER=someone
-export MAGENTO_DB_PASS=something
-export MAGENTO_DB_NAME=somename
-```
-
-- Run MageTestStand:
-```
-curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh | bash
-```
-
-- Skip cleanup
-
-If you're running this in an CI environment that will delete the workspace after the run (e.g. Travis CI) you might not want to wait for this script to explicitely cleanup. Using `SKIP_CLEANUP` parameter you can make MageTestStand skip this step.
-
-This parameter can be set via an environment variable (Travis CI supports that via env/global) or from command line:
-```
-export SKIP_CLEANUP=1
 ```
 
 Development
