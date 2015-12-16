@@ -79,7 +79,8 @@ cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
-php ${BUILDENV}/tools/phpcs --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}/app/code
+php ${BUILDENV}/tools/phpcs --config-set ignore_warnings_on_exit
+php ${BUILDENV}/tools/phpcs --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=120 ${BUILDENV}/.modman/${APPNAME}/app/code
 phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
