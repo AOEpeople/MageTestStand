@@ -2,8 +2,7 @@
   "minimum-stability": "dev",
   "require": {
     "aoepeople/composer-installers": "*",
-    "ecomdev/ecomdev_phpunit": "dev-dev",
-    "magento-ecg/coding-standard": "dev-master"
+    "ecomdev/ecomdev_phpunit": "dev-dev"
   },
   "config": {
     "bin-dir": "bin"

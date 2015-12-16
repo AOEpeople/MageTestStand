@@ -64,6 +64,7 @@ if [ ! -f ${BUILDENV}/tools/magedownload ] ; then
   curl -s -L http://magedownload.steverobbins.com/download/latest/magedownload.phar -o ${BUILDENV}/tools/magedownload
   chmod +x ${BUILDENV}/tools/magedownload
 fi
+git clone https://github.com/magento-ecg/coding-standard $(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg
 
 cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 
@@ -78,7 +79,7 @@ cd ${BUILDENV}
 ${BUILDENV}/test.sh
 
 cd ${BUILDENV}/htdocs
-php ${BUILDENV}/tools/phpcs --standard=${BUILDENV}/htdocs/vendor/magento-ecg/coding-standard/Ecg --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}/app/code
+php ${BUILDENV}/tools/phpcs --config-set ignore_warnings_on_exit --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=180 ${BUILDENV}/.modman/${APPNAME}/app/code
 phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
