@@ -3,7 +3,7 @@
   "require": {
     "aoepeople/composer-installers": "*",
     "ecomdev/ecomdev_phpunit": "dev-dev",
-    "magento-ecg/coding-standard": "dev-master",
+    "magento-ecg/coding-standard": "dev-master"
   },
   "config": {
     "bin-dir": "bin"
