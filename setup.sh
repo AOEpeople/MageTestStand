@@ -41,5 +41,5 @@ if [ ! -d "${BUILDENV}/${TEST_BASEDIR}" ] ; then
 fi
 
 cd "${BUILDENV}/${TEST_BASEDIR}"
-${BUILDENV}/tools/phpunit.phar --colors -d display_errors=1
+${BUILDENV}/tools/phpunit.phar --colors -d display_errors=1 --debug
 
