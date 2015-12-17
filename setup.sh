@@ -31,14 +31,11 @@ cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 # Install Magento
 ${BUILDENV}/install.sh
 
-
 if [ -d "${WORKSPACE}/vendor" ] ; then
   cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"
 fi
 
 # Run the tests
-
-
 if [ ! -d "${BUILDENV}/${TEST_BASEDIR}" ] ; then
     echo "Could not find test dir ${BUILDENV}/${TEST_BASEDIR}"
 fi
