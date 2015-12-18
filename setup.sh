@@ -45,17 +45,11 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   chmod +x ${BUILDENV}/tools/composer
 fi
 if [ ! -f ${BUILDENV}/tools/composer ] ; then
-    case $TRAVIS_PHP_VERSION in
-        5.4) PHPUNIT = 4 ;;
-        5.5) PHPUNIT = 4 ;;
-        *) PHPUNIT = 5 ;;
+    case ${TRAVIS_PHP_VERSION} in
+        5.4) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit ;;
+        5.5) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit = 4 ;;
+        *) curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit ;;
     esac
-    if [ $PHPUNIT = 4 ]; then
-      curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit
-    fi
-    if [ $PHPUNIT = 5 ]; then
-      curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit
-    fi
     chmod +x ${BUILDENV}/tools/phpunit
 fi
 if [ ! -f ${BUILDENV}/tools/phpcs ] ; then
