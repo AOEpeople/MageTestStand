@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.1.2
+- conditionally use phpunit 4 or phpunit 5 dependent on php version used
+- run setup scripts properly
+- use our own [ECG Magento Code Sniffer Coding Standard](https://github.com/ffuenf/coding-standard) fork
+
 ## 2.1.1 
 - use [ECG Magento Code Sniffer Coding Standard](https://github.com/magento-ecg/coding-standard)
 
