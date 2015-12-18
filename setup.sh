@@ -44,9 +44,19 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
   chmod +x ${BUILDENV}/tools/composer
 fi
-if [ ! -f ${BUILDENV}/tools/phpunit ] ; then
-  curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit
-  chmod +x ${BUILDENV}/tools/phpunit
+if [ ! -f ${BUILDENV}/tools/composer ] ; then
+    case $(phpenv version-name) in
+        "5.4") PHPUNIT = 4 ;;
+        "5.5") PHPUNIT = 4 ;;
+        *) PHPUNIT = 5 ;;
+    esac
+    if [ $PHPUNIT = 4 ]; then
+      curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit
+    fi
+    if [ $PHPUNIT = 5 ]; then
+      curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit
+    fi
+    chmod +x ${BUILDENV}/tools/phpunit
 fi
 if [ ! -f ${BUILDENV}/tools/phpcs ] ; then
   curl -s -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o ${BUILDENV}/tools/phpcs
