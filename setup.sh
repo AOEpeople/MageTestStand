@@ -44,6 +44,10 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
   chmod +x ${BUILDENV}/tools/composer
 fi
+if [ ! -f ${BUILDENV}/tools/phpunit ] ; then
+  curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit
+  chmod +x ${BUILDENV}/tools/phpunit
+fi
 if [ ! -f ${BUILDENV}/tools/phpcs ] ; then
   curl -s -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o ${BUILDENV}/tools/phpcs
   chmod +x ${BUILDENV}/tools/phpcs
@@ -64,7 +68,7 @@ if [ ! -f ${BUILDENV}/tools/magedownload ] ; then
   curl -s -L http://magedownload.steverobbins.com/download/latest/magedownload.phar -o ${BUILDENV}/tools/magedownload
   chmod +x ${BUILDENV}/tools/magedownload
 fi
-git clone https://github.com/magento-ecg/coding-standard $(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg
+git clone https://github.com/ffuenf/coding-standard $(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg
 
 cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 
@@ -81,7 +85,8 @@ ${BUILDENV}/test.sh
 cd ${BUILDENV}/htdocs
 php ${BUILDENV}/tools/phpcs --config-set ignore_warnings_on_exit true
 php ${BUILDENV}/tools/phpcs --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=120 ${BUILDENV}/.modman/${APPNAME}/app/code
-phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
+
+${BUILDENV}/tools/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}

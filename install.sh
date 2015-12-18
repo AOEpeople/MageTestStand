@@ -74,3 +74,5 @@ fi
 tools/modman deploy-all --force
 
 tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
+tools/n98-magerun --root-dir=htdocs sys:setup:run
+tools/n98-magerun --root-dir=htdocs cache:flush
