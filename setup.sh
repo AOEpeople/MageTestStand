@@ -46,8 +46,8 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
 fi
 if [ ! -f ${BUILDENV}/tools/composer ] ; then
     case $TRAVIS_PHP_VERSION in
-        "5.4") PHPUNIT = 4 ;;
-        "5.5") PHPUNIT = 4 ;;
+        5.4) PHPUNIT = 4 ;;
+        5.5) PHPUNIT = 4 ;;
         *) PHPUNIT = 5 ;;
     esac
     if [ $PHPUNIT = 4 ]; then
