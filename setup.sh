@@ -44,10 +44,10 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
   chmod +x ${BUILDENV}/tools/composer
 fi
-if [ ! -f ${BUILDENV}/tools/composer ] ; then
+if [ ! -f ${BUILDENV}/tools/phpunit ] ; then
     case ${TRAVIS_PHP_VERSION} in
         5.4) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit ;;
-        5.5) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit = 4 ;;
+        5.5) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit ;;
         *) curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit ;;
     esac
     chmod +x ${BUILDENV}/tools/phpunit
