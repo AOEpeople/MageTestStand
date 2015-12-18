@@ -45,7 +45,7 @@ if [ ! -f ${BUILDENV}/tools/composer ] ; then
   chmod +x ${BUILDENV}/tools/composer
 fi
 if [ ! -f ${BUILDENV}/tools/composer ] ; then
-    case $(phpenv version-name) in
+    case $TRAVIS_PHP_VERSION in
         "5.4") PHPUNIT = 4 ;;
         "5.5") PHPUNIT = 4 ;;
         *) PHPUNIT = 5 ;;
