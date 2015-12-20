@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.1.3
+- only run phpcs if $PHPCS is present
+
 ## 2.1.2
 - conditionally use phpunit 4 or phpunit 5 dependent on php version used
 - run setup scripts properly
