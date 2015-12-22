@@ -62,14 +62,7 @@ matrix:
   fast_finish: true
   allow_failures:
   - env: MAGENTO_VERSION=magento-ce-1.9.1.1
-  - env: MAGENTO_VERSION=magento-ce-1.9.1.0
   - php: 5.3
-  - php: 5.4
-    env: MAGENTO_VERSION=magento-ce-1.9.2.2
-  - php: 5.4
-    env: MAGENTO_VERSION=magento-ce-1.9.2.1
-  - php: 5.4
-    env: MAGENTO_VERSION=magento-ce-1.9.2.0
   - php: 5.6
     env: MAGENTO_VERSION=magento-mirror-1.8.1.0
   - php: 7.0
@@ -79,10 +72,7 @@ env:
   - APPNAME=NAMESPACE_EXTENSIONNAME
   matrix:
   - MAGENTO_VERSION=magento-ce-1.9.2.2
-  - MAGENTO_VERSION=magento-ce-1.9.2.1
-  - MAGENTO_VERSION=magento-ce-1.9.2.0
   - MAGENTO_VERSION=magento-ce-1.9.1.1
-  - MAGENTO_VERSION=magento-ce-1.9.1.0
   - MAGENTO_VERSION=magento-mirror-1.8.1.0
   - MAGENTO_VERSION=magento-mirror-1.7.0.2
   - MAGENTO_VERSION=magento-mirror-1.6.2.0

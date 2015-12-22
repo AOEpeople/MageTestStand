@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.1.4
+- use `configure` command of [magedownload-cli](https://github.com/steverobbins/magedownload-cli/releases/tag/v1.3.0) to be future-proof
+
 ## 2.1.3
 - only run phpcs if $PHPCS is present
 

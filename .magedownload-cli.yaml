@@ -1,3 +1,0 @@
-user:
-    id: {{ MAGEDOWNLOAD_ID }}
-    token: {{ MAGEDOWNLOAD_TOKEN }}
