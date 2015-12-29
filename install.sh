@@ -55,7 +55,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
     if [ $VER -gt 1900 ] ; then # use magedownload-cli only for magento > 1.9.0.0
         if [ ! -f /tmp/magento-ce-${VERSION}.tar.gz ] ; then
             tools/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
-            tools/magedownload download --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN} magento-${VERSION}.tar.gz /tmp/${MAGENTO_VERSION}.tar.gz
+            tools/magedownload download magento-${VERSION}.tar.gz /tmp/${MAGENTO_VERSION}.tar.gz
         fi
     fi
 
