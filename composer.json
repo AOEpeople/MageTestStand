@@ -1,9 +1,16 @@
 {
   "minimum-stability": "dev",
   "require": {
+    "ecomdev/ecomdev_phpunit": "dev-dev",
     "aoepeople/composer-installers": "*"
   },
   "config": {
     "bin-dir": "bin"
-  }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://packages.firegento.com"
+    }
+  ]
 }
