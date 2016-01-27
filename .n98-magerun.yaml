@@ -1,6 +1,13 @@
 commands:
   N98\Magento\Command\Installer\InstallCommand:
     magento-packages:
+      - name: magento-ce-1.9.2.3
+        version: 1.9.2.3
+        dist:
+          url: /tmp/magento-ce-1.9.2.3.tar.gz
+          type: tar
+          shasum: 95d2c61786764e047ab4fe60993b8d5897211aee
+
       - name: magento-ce-1.9.2.2
         version: 1.9.2.2
         dist:
