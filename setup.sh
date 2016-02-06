@@ -36,7 +36,7 @@ if [ ! -f ${BUILDENV}/tools/modman ] ; then
   chmod +x ${BUILDENV}/tools/modman
 fi
 if [ ! -f ${BUILDENV}/tools/n98-magerun ] ; then
-  curl -s -L http://files.magerun.net/n98-magerun-latest.phar -o ${BUILDENV}/tools/n98-magerun
+  curl -s -L https://files.magerun.net/n98-magerun-dev.phar -o ${BUILDENV}/tools/n98-magerun
   chmod +x ${BUILDENV}/tools/n98-magerun
 fi
 ${BUILDENV}/n98-magerun-modules.sh
