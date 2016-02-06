@@ -4,83 +4,83 @@ commands:
       - name: magento-ce-1.9.2.3
         version: 1.9.2.3
         dist:
-          url: /tmp/magento-ce-1.9.2.3.tar.gz
-          type: tar
-          shasum: 95d2c61786764e047ab4fe60993b8d5897211aee
+          url: /tmp/magento-ce-1.9.2.3.zip
+          type: zip
+          shasum: c211c1d31468dfbc45decd7d00266281fdc97b20
 
       - name: magento-ce-1.9.2.2
         version: 1.9.2.2
         dist:
-          url: /tmp/magento-ce-1.9.2.2.tar.gz
-          type: tar
-          shasum: c213fc9c375241fd52525f47fd68774e8a73e851
+          url: /tmp/magento-ce-1.9.2.2.zip
+          type: zip
+          shasum: 6b6de6bee57a2992affa1fad01444cb6c05e0788
 
       - name: magento-ce-1.9.2.1
         version: 1.9.2.1
         dist:
-          url: /tmp/magento-ce-1.9.2.1.tar.gz
-          type: tar
-          shasum: 41b4b9ae2e02fa9fecf3330e19790120aeeced92
+          url: /tmp/magento-ce-1.9.2.1.zip
+          type: zip
+          shasum: b158de5c3bc587931d99af1bd11f3235e75d1191
 
       - name: magento-ce-1.9.2.0
         version: 1.9.2.0
         dist:
-          url: /tmp/magento-ce-1.9.2.0.tar.gz
-          type: tar
-          shasum: 5e15742b4d995d3cbfbaee7caa95e45dc954f2c8
+          url: /tmp/magento-ce-1.9.2.0.zip
+          type: zip
+          shasum: f5cd7053c41f19e9007ce6817ad12344e6fc0263
 
       - name: magento-ce-1.9.1.1
         version: 1.9.1.1
         dist:
-          url: /tmp/magento-ce-1.9.1.1.tar.gz
-          type: tar
-          shasum: 170e4b9019f43477d2f2a074ef551a05009da724
+          url: /tmp/magento-ce-1.9.1.1.zip
+          type: zip
+          shasum: c9074bf9646b28c035d369db7189aec9733ea978
 
       - name: magento-ce-1.9.1.0
         version: 1.9.1.0
         dist:
-          url: /tmp/magento-ce-1.9.1.0.tar.gz
-          type: tar
-          shasum: 4f7064f4a5bc46298979e8b37208be6fdaf20002
+          url: /tmp/magento-ce-1.9.1.0.zip
+          type: zip
+          shasum: ef2da3723033614d4f10c3a12e8392d1730ade30
 
       - name: magento-ce-1.9.0.1
         version: 1.9.0.1
         dist:
-          url: /tmp/magento-ce-1.9.0.1.tar.gz
-          type: tar
-          shasum: 5100c4dab56cf587d5478b9bf8b5d4a0fa411179
+          url: /tmp/magento-ce-1.9.0.1.zip
+          type: zip
+          shasum: ff84a32100598cff43d765e3d6cb0bc1a5a414b3
 
       - name: magento-ce-1.9.0.0
         version: 1.9.0.0
         dist:
-          url: /tmp/magento-ce-1.9.0.0.tar.gz
-          type: tar
-          shasum: 085c5bfa14390697158aeabc263e95af6663d55f
+          url: /tmp/magento-ce-1.9.0.0.zip
+          type: zip
+          shasum: 089664d5c690324a53f06f0311d1126cf0ba3044
 
       - name: magento-ce-1.8.1.0
         version: 1.8.1.0
         dist:
-          url: /tmp/magento-ce-1.8.1.0.tar.gz
-          type: tar
-          shasum: 024a6173003e4f6814e7fb7e84ca8b08a18db4c1
+          url: /tmp/magento-ce-1.8.1.0.zip
+          type: zip
+          shasum: 9b47925c8e68a4eea0963e32af884944e3b90ee0
 
       - name: magento-ce-1.8.0.0
         version: 1.8.0.0
         dist:
-          url: /tmp/magento-ce-1.8.0.0.tar.gz
-          type: tar
-          shasum: 31a52e9522d09065ff6f939faa1289023db2eff5
+          url: /tmp/magento-ce-1.8.0.0.zip
+          type: zip
+          shasum: 51a140dc651e1d2e3693571f86963a01c168f740
 
       - name: magento-ce-1.7.0.2
         version: 1.7.0.2
         dist:
-          url: /tmp/magento-ce-1.7.0.2.tar.gz
-          type: tar
-          shasum: 8d2a378e92ee917a3b74b1a51a8d3e6874dc6ab9
+          url: /tmp/magento-ce-1.7.0.2.zip
+          type: zip
+          shasum: 0183fac38b6c5a6ff13b9363304eb70d9298b759
 
       - name: magento-ce-1.6.2.0
         version: 1.6.2.0
         dist:
-          url: /tmp/magento-ce-1.6.2.0.tar.gz
-          type: tar
-          shasum: 897050f0c08480ab6531eead5a5caadfef673340
+          url: /tmp/magento-ce-1.6.2.0.zip
+          type: zip
+          shasum: 136a5ce5d49cc7d4fd6a43452aafcfbac97722be
