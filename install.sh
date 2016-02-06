@@ -52,11 +52,9 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 
     VERSION=`echo ${MAGENTO_VERSION} | sed -n 's/.*-\(.*\)/\1/p'`
     VER=`echo "${VERSION//./}"`
-    if [ $VER -gt 1900 ] ; then # use magedownload-cli only for magento > 1.9.0.0
-        if [ ! -f /tmp/magento-ce-${VERSION}.tar.gz ] ; then
-            tools/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
-            tools/magedownload download magento-${VERSION}.tar.gz /tmp/${MAGENTO_VERSION}.tar.gz
-        fi
+    if [ ! -f /tmp/magento-ce-${VERSION}.tar.gz ] ; then
+        tools/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
+        tools/magedownload download magento-${VERSION}.tar.gz /tmp/${MAGENTO_VERSION}.tar.gz
     fi
 
     tools/n98-magerun install \
