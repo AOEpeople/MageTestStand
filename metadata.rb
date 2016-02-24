@@ -4,7 +4,7 @@ license 'Apache 2.0'
 description 'installs/configures mageteststand'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 name 'mageteststand'
-version '2.1.5'
+version '2.1.6'
 
 %w( debian ubuntu ).each do |os|
   supports os

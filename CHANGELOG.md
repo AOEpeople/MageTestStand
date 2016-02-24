@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of MageTestStand.
 
+## 2.1.6
+- add Magento CE 1.9.2.4
+
 ## 2.1.5
 - add Magento CE 1.9.2.3
 
