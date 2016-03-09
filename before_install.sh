@@ -45,7 +45,7 @@ if [ "$CASHER_DIR" ]; then
     fi
     # ocular
     if [ ! -f $HOME/.cache/bin/ocular ]; then
-        curl --connect-timeout 30 -sS https://scrutinizer-ci.com/ocular.phar \
+        curl --connect-timeout 30 -sS https://github.com/scrutinizer-ci/ocular/blob/master/bin/ocular \
              -o $HOME/.cache/bin/ocular
         chmod +x $HOME/.cache/bin/ocular
     fi
