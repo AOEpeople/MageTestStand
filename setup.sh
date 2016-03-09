@@ -30,50 +30,8 @@ echo "Using build directory ${BUILDENV}"
 git clone https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
 mkdir -p ${WORKSPACE}/build/logs
-mkdir -p ${BUILDENV}/tools
-if [ ! -f ${BUILDENV}/tools/modman ] ; then
-  curl -s -L https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -o ${BUILDENV}/tools/modman
-  chmod +x ${BUILDENV}/tools/modman
-fi
-if [ ! -f ${BUILDENV}/tools/n98-magerun ] ; then
-  curl -s -L https://files.magerun.net/n98-magerun-latest.phar -o ${BUILDENV}/tools/n98-magerun
-  chmod +x ${BUILDENV}/tools/n98-magerun
-fi
-${BUILDENV}/n98-magerun-modules.sh
-if [ ! -f ${BUILDENV}/tools/composer ] ; then
-  curl -s -L https://getcomposer.org/composer.phar -o ${BUILDENV}/tools/composer
-  chmod +x ${BUILDENV}/tools/composer
-fi
-if [ ! -f ${BUILDENV}/tools/phpunit ] ; then
-    case ${TRAVIS_PHP_VERSION} in
-        5.4) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit ;;
-        5.5) curl -s -L https://phar.phpunit.de/phpunit-old.phar -o ${BUILDENV}/tools/phpunit ;;
-        *) curl -s -L https://phar.phpunit.de/phpunit.phar -o ${BUILDENV}/tools/phpunit ;;
-    esac
-    chmod +x ${BUILDENV}/tools/phpunit
-fi
-if [ ! -f ${BUILDENV}/tools/phpcs ] ; then
-  curl -s -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o ${BUILDENV}/tools/phpcs
-  chmod +x ${BUILDENV}/tools/phpcs
-fi
-if [ ! -f ${BUILDENV}/tools/phploc ] ; then
-  curl -s -L https://phar.phpunit.de/phploc.phar -o ${BUILDENV}/tools/phploc
-  chmod +x ${BUILDENV}/tools/phploc
-fi
-if [ ! -f ${BUILDENV}/tools/ocular ] ; then
-  curl -s -L https://scrutinizer-ci.com/ocular.phar -o ${BUILDENV}/tools/ocular
-  chmod +x ${BUILDENV}/tools/ocular
-fi
-if [ ! -f ${BUILDENV}/tools/assert.sh ] ; then
-  curl -s -L https://raw.github.com/lehmannro/assert.sh/master/assert.sh -o ${BUILDENV}/tools/assert.sh
-  chmod +x ${BUILDENV}/tools/assert.sh
-fi
-if [ ! -f ${BUILDENV}/tools/magedownload ] ; then
-  curl -s -L http://magedownload.steverobbins.com/download/latest/magedownload.phar -o ${BUILDENV}/tools/magedownload
-  chmod +x ${BUILDENV}/tools/magedownload
-fi
-git clone https://github.com/ffuenf/coding-standard $(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg
 
+${BUILDENV}/n98-magerun-modules.sh
 cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
@@ -89,18 +47,18 @@ ${BUILDENV}/test.sh
 cd ${BUILDENV}/htdocs
 
 if [ ! -z $PHPCS ] ; then
-  php ${BUILDENV}/tools/phpcs --config-set ignore_warnings_on_exit true
-  php ${BUILDENV}/tools/phpcs --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=120 ${BUILDENV}/.modman/${APPNAME}/app/code
+  php $HOME/.cache/bin/phpcs --config-set ignore_warnings_on_exit true
+  php $HOME/.cache/bin/phpcs --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=120 ${BUILDENV}/.modman/${APPNAME}/app/code
 fi
 
-${BUILDENV}/tools/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
+$HOME/.cache/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}
 if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
-  php -f ${BUILDENV}/tools/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${WORKSPACE}/build/logs/clover.xml
+  php -f $HOME/.cache/bin/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${WORKSPACE}/build/logs/clover.xml
 else
-  php -f ${BUILDENV}/tools/ocular code-coverage:upload --format=php-clover ${WORKSPACE}/build/logs/clover.xml
+  php -f $HOME/.cache/bin/ocular code-coverage:upload --format=php-clover ${WORKSPACE}/build/logs/clover.xml
 fi
 
 if [ "$TRAVIS_TAG" != "" ]; then

@@ -53,11 +53,11 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
     VERSION=`echo ${MAGENTO_VERSION} | sed -n 's/.*-\(.*\)/\1/p'`
     VER=`echo "${VERSION//./}"`
     if [ ! -f /tmp/magento-ce-${VERSION}.zip ] ; then
-        tools/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
-        tools/magedownload download magento-${VERSION}.zip /tmp/${MAGENTO_VERSION}.zip
+        $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
+        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip /tmp/${MAGENTO_VERSION}.zip
     fi
 
-    tools/n98-magerun install \
+    $HOME/.cache/bin/n98-magerun install \
       --dbHost="${MAGENTO_DB_HOST}" --dbUser="${MAGENTO_DB_USER}" --dbPass="${MAGENTO_DB_PASS}" --dbName="${MAGENTO_DB_NAME}" --dbPort="${MAGENTO_DB_PORT}" \
       --installSampleData=no \
       --useDefaultConfigParams=yes \
@@ -67,11 +67,11 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 fi
 
 if [ ! -f composer.lock ] ; then
-    tools/composer install --prefer-source
+    composer install --no-interaction --prefer-dist
 fi
 
-tools/modman deploy-all --force
+$HOME/.cache/bin/modman deploy-all --force
 
-tools/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
-tools/n98-magerun --root-dir=htdocs sys:setup:run
-tools/n98-magerun --root-dir=htdocs cache:flush
+$HOME/.cache/bin/n98-magerun --root-dir=htdocs config:set dev/template/allow_symlink 1
+$HOME/.cache/bin/n98-magerun --root-dir=htdocs sys:setup:run
+$HOME/.cache/bin/n98-magerun --root-dir=htdocs cache:flush

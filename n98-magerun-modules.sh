@@ -49,3 +49,6 @@ fi
 if [ ! -d ~/.n98-magerun/modules/magescan ] ; then
   git clone https://github.com/steverobbins/magescan ~/.n98-magerun/modules/magescan
 fi
+if [ ! -d ~/.n98-magerun/modules/hypernode-magerun ] ; then
+  git clone https://github.com/Hypernode/hypernode-magerun ~/.n98-magerun/modules/hypernode-magerun
+fi

@@ -26,7 +26,7 @@ echo
 
 echo
 echo -e "${YELLOW}testing for rewrite conflicts${NC}"
-CMD='tools/n98-magerun dev:module:rewrite:conflicts'
+CMD="${HOME}/.cache/bin/n98-magerun dev:module:rewrite:conflicts"
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'No rewrite conflicts were found.'" "1"
 assert_end
@@ -34,7 +34,7 @@ echo
 
 echo
 echo -e "${YELLOW}scanning files in htdocs/app/ for malformed XML${NC}"
-CMD='tools/n98-magerun sxmlsv:scan htdocs/app/'
+CMD="${HOME}/.cache/bin/n98-magerun sxmlsv:scan htdocs/app/"
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'finding 0 problems'" "1"
 assert_end
@@ -42,7 +42,7 @@ echo
 
 echo
 echo -e "${YELLOW}[APPSEC-1063] testing for possible SQL vulnerabilities${NC}"
-CMD='tools/n98-magerun dev:possible-sql-injection'
+CMD="${HOME}/.cache/bin/n98-magerun dev:possible-sql-injection"
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'not affected by APPSEC-1063'" "1"
 assert_end
@@ -50,7 +50,7 @@ echo
 
 echo
 echo -e "${YELLOW}[SUPEE-6788] testing for old-style admin routing${NC}"
-CMD='tools/n98-magerun dev:old-admin-routing'
+CMD="${HOME}/.cache/bin/n98-magerun dev:old-admin-routing"
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'All extension are compatible'" "1"
 assert_end
@@ -58,7 +58,7 @@ echo
 
 echo
 echo -e "${YELLOW}[SUPEE-6788] testing for non-whitelisted template vars${NC}"
-CMD='tools/n98-magerun dev:template-vars'
+CMD="${HOME}/.cache/bin/n98-magerun dev:template-vars"
 ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'All blocks and variables are whitelisted'" "1"
 assert_end

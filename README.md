@@ -123,7 +123,7 @@ License and Author
 
 - Author:: Fabrizio Branca (<mail@fabrizio-branca.de>)
 - Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
-- Copyright:: 2015, ffuenf
+- Copyright:: 2016, ffuenf
 
 GNU GENERAL PUBLIC LICENSE Version 3
 
