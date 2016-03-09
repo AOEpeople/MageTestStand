@@ -51,7 +51,7 @@ if [ ! -z $PHPCS ] ; then
   php $HOME/.cache/bin/phpcs --standard=$(pear config-get php_dir)/PHP/CodeSniffer/Standards/Ecg --encoding=utf-8 --report-width=120 ${BUILDENV}/.modman/${APPNAME}/app/code
 fi
 
-$HOME/.cache/bin/phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
+phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}

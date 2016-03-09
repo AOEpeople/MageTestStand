@@ -28,18 +28,6 @@ if [ "$CASHER_DIR" ]; then
              -o $HOME/.cache/bin/n98-magerun
         chmod +x $HOME/.cache/bin/n98-magerun
     fi
-    # phpunit
-    if [ ! -f $HOME/.cache/bin/phpunit ]; then
-        case ${TRAVIS_PHP_VERSION} in
-            5.4) curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-old.phar \
-                      -o $HOME/.cache/bin/phpunit ;;
-            5.5) curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit-old.phar \
-                      -o $HOME/.cache/bin/phpunit ;;
-            *) curl --connect-timeout 30 -sS https://phar.phpunit.de/phpunit.phar \
-                    -o $HOME/.cache/bin/phpunit ;;
-        esac
-        chmod +x $HOME/.cache/bin/phpunit
-    fi
     # phpcs
     if [ ! -f $HOME/.cache/bin/phpcs ]; then
         curl --connect-timeout 30 -sS https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
