@@ -39,7 +39,7 @@ cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 if [ -d "${WORKSPACE}/.modman" ] ; then
   cp -rf ${WORKSPACE}/.modman/* "${BUILDENV}/.modman/"
 fi
-${BUILDENV}/install.sh
+${BUILDENV}/magento.sh
 
 cd ${BUILDENV}
 ${BUILDENV}/test.sh
