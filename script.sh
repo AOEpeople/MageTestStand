@@ -7,7 +7,7 @@ function cleanup {
     echo "Removing build directory ${BUILDENV}"
     rm -rf "${BUILDENV}"
     rm -rf ${WORKSPACE}/build
-    rm -f ${MAGENTO_VERSION}.tar.gz
+    rm -f magento-${MAGENTO_VERSION}.tar.gz
   fi
 }
 

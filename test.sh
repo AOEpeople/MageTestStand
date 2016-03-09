@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-. tools/assert.sh
+. assert.sh
 
 _clean() {
     _assert_reset # reset state
