@@ -45,13 +45,13 @@ if [ "$CASHER_DIR" ]; then
     fi
     # ocular
     if [ ! -f $HOME/.cache/bin/ocular ]; then
-        curl --connect-timeout 30 -sS https://github.com/scrutinizer-ci/ocular/blob/master/bin/ocular \
+        curl --connect-timeout 30 -sL https://scrutinizer-ci.com/ocular.phar \
              -o $HOME/.cache/bin/ocular
         chmod +x $HOME/.cache/bin/ocular
     fi
     # assert.sh
     if [ ! -f $HOME/.cache/bin/assert.sh ]; then
-        curl --connect-timeout 30 -sS https://raw.github.com/lehmannro/assert.sh/master/assert.sh \
+        curl --connect-timeout 30 -sS https://raw.githubusercontent.com/lehmannro/assert.sh/master/assert.sh \
              -o $HOME/.cache/bin/assert.sh
         chmod +x $HOME/.cache/bin/assert.sh
     fi
