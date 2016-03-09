@@ -54,7 +54,7 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
     VER=`echo "${VERSION//./}"`
     if [ ! -f /tmp/magento-ce-${VERSION}.zip ] ; then
         $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
-        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip /tmp/${MAGENTO_VERSION}.zip
+        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip /tmp/magento-${MAGENTO_VERSION}.zip
     fi
 
     $HOME/.cache/bin/n98-magerun install \
