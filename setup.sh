@@ -27,7 +27,7 @@ BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
 
 echo "Using build directory ${BUILDENV}"
 
-git clone https://github.com/ffuenf/MageTestStand "${BUILDENV}"
+git clone -b dev https://github.com/ffuenf/MageTestStand "${BUILDENV}"
 
 mkdir -p ${WORKSPACE}/build/logs
 
