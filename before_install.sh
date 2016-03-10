@@ -4,7 +4,7 @@ set -x
 
 export PATH="$HOME/.cache/bin:$PATH"
 
-echo > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini.disabled
 echo 'memory_limit = -1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 phpenv rehash;
 composer self-update
