@@ -52,10 +52,11 @@ if [ ! -f htdocs/app/etc/local.xml ] ; then
 
     VERSION=`echo ${MAGENTO_VERSION} | sed -n 's/.*-\(.*\)/\1/p'`
     VER=`echo "${VERSION//./}"`
-    if [ ! -f /tmp/magento-ce-${VERSION}.zip ] ; then
+    if [ ! -f $HOME/.cache/magento/magento-ce-${VERSION}.zip ] ; then
         $HOME/.cache/bin/magedownload configure --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN}
-        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip /tmp/magento-${MAGENTO_VERSION}.zip
+        $HOME/.cache/bin/magedownload download magento-${VERSION}.zip  $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip
     fi
+    cp $HOME/.cache/magento/magento-${MAGENTO_VERSION}.zip /tmp/magento-${MAGENTO_VERSION}.zip
 
     $HOME/.cache/bin/n98-magerun install \
       --dbHost="${MAGENTO_DB_HOST}" --dbUser="${MAGENTO_DB_USER}" --dbPass="${MAGENTO_DB_PASS}" --dbName="${MAGENTO_DB_NAME}" --dbPort="${MAGENTO_DB_PORT}" \
