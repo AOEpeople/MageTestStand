@@ -53,14 +53,14 @@ fi
 
 mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini.disabled ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 phpenv rehash;
-phpunit --coverage-clover=${WORKSPACE}/build/logs/clover.xml --colors -d display_errors=1
+phpunit --coverage-clover=${WORKSPACE}/build/logs/coverage.clover --colors -d display_errors=1
 
 echo "Exporting code coverage results to scrutinizer-ci"
 cd ${WORKSPACE}
 if [ ! -z $SCRUTINIZER_ACCESS_TOKEN ] ; then
-  php -f $HOME/.cache/bin/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${WORKSPACE}/build/logs/clover.xml
+  php -f $HOME/.cache/bin/ocular code-coverage:upload --access-token=${SCRUTINIZER_ACCESS_TOKEN} --format=php-clover ${WORKSPACE}/build/logs/coverage.clover
 else
-  php -f $HOME/.cache/bin/ocular code-coverage:upload --format=php-clover ${WORKSPACE}/build/logs/clover.xml
+  php -f $HOME/.cache/bin/ocular code-coverage:upload --format=php-clover ${WORKSPACE}/build/logs/coverage.clover
 fi
 
 if [ "$TRAVIS_TAG" != "" ]; then
