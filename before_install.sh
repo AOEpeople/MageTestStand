@@ -54,7 +54,7 @@ if [ "$CASHER_DIR" ]; then
     fi
     # magedownload
     if [ ! -f $HOME/.cache/bin/magedownload ]; then
-        curl --connect-timeout 30 -sS http://magedownload.steverobbins.com/download/latest/magedownload.phar \
+        curl --connect-timeout 30 -sLS "$(curl -s https://api.github.com/repos/steverobbins/magedownload-cli/releases | grep browser_download_url | grep '[.]phar' | head -n 1 | cut -d '"' -f 4)" \
              -o $HOME/.cache/bin/magedownload
         chmod +x $HOME/.cache/bin/magedownload
     fi
