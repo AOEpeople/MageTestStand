@@ -54,7 +54,7 @@ if [ "$CASHER_DIR" ]; then
     fi
     # magedownload
     if [ ! -f $HOME/.cache/bin/magedownload ]; then
-        curl --connect-timeout 30 -sS https://github.com/steverobbins/magedownload-cli/releases/download/opnv2.1.0/magedownload.phar \
+        curl --connect-timeout 30 -sSL https://github.com/steverobbins/magedownload-cli/releases/download/opnv2.1.0/magedownload.phar \
              -o $HOME/.cache/bin/magedownload
         chmod +x $HOME/.cache/bin/magedownload
     fi
