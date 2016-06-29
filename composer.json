@@ -11,10 +11,6 @@
     {
       "type": "composer",
       "url": "https://packages.firegento.com"
-    },
-    {
-      "type": "composer",
-      "url": "https://packages.magento.com"
     }
   ]
 }
