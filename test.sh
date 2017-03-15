@@ -55,11 +55,3 @@ ${CMD}
 _clean STOP=1; assert "${CMD} | grep -co 'All extension are compatible'" "1"
 assert_end
 echo
-
-echo
-echo -e "${YELLOW}[SUPEE-6788] testing for non-whitelisted template vars${NC}"
-CMD="${HOME}/.cache/bin/n98-magerun dev:template-vars"
-${CMD}
-_clean STOP=1; assert "${CMD} | grep -co 'All blocks and variables are whitelisted'" "1"
-assert_end
-echo
