@@ -6,14 +6,14 @@ commands:
         dist:
           url: /tmp/magento-ce-1.9.3.2.zip
           type: zip
-          shasum: 84d127c7eefe1be54b8e69f49d16880b
+          shasum: e3ebcdc23e26a0bda1bc45c91c13fe190369c4d1
 
       - name: ce-1.9.3.1
         version: 1.9.3.1
         dist:
           url: /tmp/magento-ce-1.9.3.1.zip
           type: zip
-          shasum: 00cc4b4a548617e3f51958cb8e08ee97
+          shasum: 4004ce4f4e72f6bf54aaa4fefc004e33e2c896d7
 
       - name: ce-1.9.2.4
         version: 1.9.2.4
