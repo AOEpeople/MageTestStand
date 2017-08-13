@@ -6,11 +6,5 @@
     },
     "config": {
         "bin-dir": "bin"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/AOEpeople/EcomDev_PHPUnit.git"
-        }
-    ]
+    }
 }
