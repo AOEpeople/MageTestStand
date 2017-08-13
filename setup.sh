@@ -19,14 +19,17 @@ fi
 
 if [ -z $WORKSPACE ] ; then
   echo "No workspace configured, please set your WORKSPACE environment"
-  exit
+  exit 1
 fi
- 
+
+if [ -z $MAGETESTSTAND_URL ] ; then
+    MAGETESTSTAND_URL="https://github.com/AOEpeople/MageTestStand.git"
+fi
+
 BUILDENV=`mktemp -d /tmp/mageteststand.XXXXXXXX`
- 
-echo "Using build directory ${BUILDENV}"
- 
-git clone https://github.com/AOEpeople/MageTestStand.git "${BUILDENV}"
+
+echo "Cloning ${MAGETESTSTAND_URL} to ${BUILDENV}"
+git clone "${MAGETESTSTAND_URL}" "${BUILDENV}"
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
 ${BUILDENV}/install.sh
 if [ -d "${WORKSPACE}/vendor" ] ; then

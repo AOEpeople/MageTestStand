@@ -2,7 +2,7 @@
     "minimum-stability": "dev",
     "require": {
         "aoepeople/composer-installers": "*",
-        "ivanchepurnyi/ecomdev_phpunit": "dev-dev"
+        "ecomdev/ecomdev_phpunit": "dev-dev"
     },
     "config": {
         "bin-dir": "bin"
@@ -10,7 +10,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/AOEpeople/EcomDev_PHPUnit.git"
+            "url": "https://github.com/ambimax/EcomDev_PHPUnit.git"
         }
     ]
 }
