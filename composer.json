@@ -11,6 +11,10 @@
     },
     "repositories": [
         {
+            "type": "composer",
+            "url": "https://packages.firegento.com"
+        },
+        {
             "type": "vcs",
             "url": "https://github.com/AOEpeople/EcomDev_PHPUnit.git"
         }
