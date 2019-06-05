@@ -28,6 +28,7 @@ echo "Using build directory ${BUILDENV}"
  
 git clone https://github.com/AOEpeople/MageTestStand.git "${BUILDENV}"
 cp -rf "${WORKSPACE}" "${BUILDENV}/.modman/"
+cp ${BUILDENV}/.n98-magerun.yaml ~/.n98-magerun.yaml
 ${BUILDENV}/install.sh
 if [ -d "${WORKSPACE}/vendor" ] ; then
   cp -rf ${WORKSPACE}/vendor/* "${BUILDENV}/vendor/"

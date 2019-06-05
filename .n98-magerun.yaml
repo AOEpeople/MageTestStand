@@ -1,0 +1,31 @@
+commands:
+  N98\Magento\Command\System\CheckCommand:
+    php:
+      required-extensions:
+        - simplexml
+        - hash
+        - gd
+        - dom
+        - iconv
+        - curl
+        - soap
+        - pdo
+        - pdo_mysql
+
+  N98\Magento\Command\Installer\InstallCommand:
+    #see https://github.com/netz98/n98-magerun/blame/master/config.yaml
+    magento-packages:
+      - name: magento-mirror-1.9.4.1
+        version: 1.9.4.1
+        dist:
+          url: https://github.com/OpenMage/magento-mirror/archive/1.9.4.1.zip
+          type: zip
+          shasum: c1045a378aadbb453f0e01a9b1e0234bb9aac749
+      - name: magento-mirror-1.9.3.10
+        version: 1.9.3.10
+        dist:
+          url: https://github.com/OpenMage/magento-mirror/archive/1.9.3.10.zip
+          type: zip
+          shasum: c4eb4a0728154cfdae2781c15d9a1405136efa1e
+        extra:
+          sample-data: sample-data-1.9.2.4
