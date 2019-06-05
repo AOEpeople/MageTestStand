@@ -23,6 +23,7 @@ It uses following tools:
 - In case you want to allow EcomDev_PHPUnit to use the main database instead of the test database you can set following environment variable to 1. This might be required if you're planning on writing integration tests.
   - `MAGENTO_DB_ALLOWSAME`
 - Environment variable `MAGENTO_VERSION` with valid Magento version for n98-magerun's install command
+- Define `MAGETESTSTAND_URL` to use a customized MageTestStand repository.
 
 ## General usage
 
@@ -52,6 +53,7 @@ env:
 #  global:
 #    - MAGENTO_DB_ALLOWSAME=1
 #    - SKIP_CLEANUP=1
+#    - MAGETESTSTAND_URL=https://github.com/xxxx/MageTestStand.git
   - MAGENTO_VERSION=magento-ce-1.9.0.1
   - MAGENTO_VERSION=magento-ce-1.8.1.0
   - MAGENTO_VERSION=magento-ce-1.8.0.0
